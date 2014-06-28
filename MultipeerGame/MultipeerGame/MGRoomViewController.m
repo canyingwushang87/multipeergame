@@ -49,13 +49,15 @@
     tip1.font = [UIFont boldSystemFontOfSize:12.0f];
     [self.view addSubview:tip1];
 
-    UIButton *backbtn = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 40.0f, 50.0f, 20.0f)];
-    [backbtn setTitle:@"Back" forState:UIControlStateNormal];
-    [backbtn.titleLabel setFont:[UIFont systemFontOfSize:12]];
-    [backbtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [backbtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithCustomView:backbtn];
-    self.navigationItem.leftBarButtonItem = back;
+//    UIButton *backbtn = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 40.0f, 50.0f, 20.0f)];
+//    [backbtn setTitle:@"Back" forState:UIControlStateNormal];
+//    [backbtn.titleLabel setFont:[UIFont systemFontOfSize:12]];
+//    [backbtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    [backbtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithCustomView:backbtn];
+//    self.navigationItem.leftBarButtonItem = back;
+    
+    self.navigationItem.leftItemsSupplementBackButton = YES;
     
     self.joinNameText = [[UITextField alloc] initWithFrame:CGRectMake(50.0f, 200.0f, 220.0f, 30.0f)];
     [self.view addSubview:_joinNameText];
