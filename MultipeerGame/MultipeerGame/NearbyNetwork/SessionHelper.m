@@ -80,24 +80,20 @@
 
 - (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state
 {
-    BOOL needToNotify = NO;
-    
     if (state == MCSessionStateConnected) {
         if (![self.connectedPeerIDs containsObject:peerID]) {
             [self.connectedPeerIDs addObject:peerID];
-            needToNotify = YES;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.delegate sessionHelperDidAddPeers:self addedPeer:peerID];
+            });
         }
     } else {
         if ([self.connectedPeerIDs containsObject:peerID]) {
             [self.connectedPeerIDs removeObject:peerID];
-            needToNotify = YES;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.delegate sessionHelperDidRemovePeers:self removedPeer:peerID];
+            });
         }
-    }
-    
-    if (needToNotify) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.delegate sessionHelperDidChangeConnectedPeers:self];
-        });
     }
 }
 
