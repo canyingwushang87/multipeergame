@@ -8,6 +8,7 @@
 
 #import "MGPeersViewController.h"
 #import "MGCommonUtility.h"
+#import "MGHappyShakeViewController.h"
 
 @interface MGUserCharactor ()
 @end
@@ -56,13 +57,11 @@
 //    [self addNewUser:@"555"];
     
     
-    /*UIButton *backbtn = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 50.0f, 20.0f)];
-    [backbtn setTitle:@"Back" forState:UIControlStateNormal];
-    [backbtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [backbtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithCustomView:backbtn];
-    self.navigationItem.leftBarButtonItem = back;*/
-    
+    UIButton *startButton = [[UIButton alloc] initWithFrame:CGRectMake(120.0f, 400.0f, 80.0f, 20.0f)];
+    [startButton setTitle:@"Start" forState:UIControlStateNormal];
+    [startButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [startButton addTarget:self action:@selector(startPlay) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:startButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -75,6 +74,8 @@
     }
 }
 
+#pragma mark - user logic
+// 用户进入响应
 - (void)addNewUser:(NSString *)userName
 {
     CGPoint offset = CGPointMake([UIScreen mainScreen].bounds.size.width/2.0f, [UIScreen mainScreen].bounds.size.height/2.0f);
@@ -132,11 +133,21 @@
     [self.view addSubview:newUser.charatorIcon];
 }
 
+// 用户退出响应
 - (void)deleteUser:(NSString *)userName
 {
     
 }
 
+#pragma mark - events
+- (void)startPlay
+{
+    MGHappyShakeViewController * shakeViewController = [[MGHappyShakeViewController alloc] initWithNibName:@"MGHappyShakeViewController" bundle:nil];
+    shakeViewController.sessionHelper = self.sessionHelper;
+    [self.navigationController pushViewController:shakeViewController animated:YES];
+}
+
+#pragma mark - delegate
 - (void)sessionHelperDidAddPeers:(SessionHelper *)sessionHelper addedPeer:(MCPeerID *)peerID
 {
     [self addNewUser:peerID.displayName];
