@@ -55,7 +55,7 @@
 //    [backbtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 //    [backbtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
 //    UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithCustomView:backbtn];
-//    self.navigationItem.leftBarButtonItem = back;
+//    self.navigationItem.rightBarButtonItem = back;
     
     self.navigationItem.leftItemsSupplementBackButton = YES;
     
