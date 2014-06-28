@@ -23,6 +23,8 @@
 		84696000195E695B00C762B9 /* MultipeerGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84695FFF195E695B00C762B9 /* MultipeerGameTests.m */; };
 		8469600C195E69F900C762B9 /* SessionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8469600B195E69F900C762B9 /* SessionHelper.m */; };
 		8469600D195E69F900C762B9 /* SessionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8469600B195E69F900C762B9 /* SessionHelper.m */; };
+		84696010195E8E0B00C762B9 /* MGRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8469600F195E8E0B00C762B9 /* MGRoomViewController.m */; };
+		84696011195E8E0B00C762B9 /* MGRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8469600F195E8E0B00C762B9 /* MGRoomViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		84695FFF195E695B00C762B9 /* MultipeerGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MultipeerGameTests.m; sourceTree = "<group>"; };
 		8469600A195E69F900C762B9 /* SessionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionHelper.h; sourceTree = "<group>"; };
 		8469600B195E69F900C762B9 /* SessionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionHelper.m; sourceTree = "<group>"; };
+		8469600E195E8E0B00C762B9 /* MGRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGRoomViewController.h; sourceTree = "<group>"; };
+		8469600F195E8E0B00C762B9 /* MGRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGRoomViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,8 @@
 				84695FE6195E695B00C762B9 /* Main.storyboard */,
 				84695FE3195E695B00C762B9 /* MGAppDelegate.h */,
 				84695FE4195E695B00C762B9 /* MGAppDelegate.m */,
+				8469600E195E8E0B00C762B9 /* MGRoomViewController.h */,
+				8469600F195E8E0B00C762B9 /* MGRoomViewController.m */,
 				84695FE9195E695B00C762B9 /* MGViewController.h */,
 				84695FEA195E695B00C762B9 /* MGViewController.m */,
 				84696009195E69BD00C762B9 /* NearbyNetwork */,
@@ -269,6 +275,7 @@
 			files = (
 				84695FE5195E695B00C762B9 /* MGAppDelegate.m in Sources */,
 				84695FEB195E695B00C762B9 /* MGViewController.m in Sources */,
+				84696010195E8E0B00C762B9 /* MGRoomViewController.m in Sources */,
 				8469600C195E69F900C762B9 /* SessionHelper.m in Sources */,
 				84695FE1195E695B00C762B9 /* main.m in Sources */,
 			);
@@ -279,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8469600D195E69F900C762B9 /* SessionHelper.m in Sources */,
+				84696011195E8E0B00C762B9 /* MGRoomViewController.m in Sources */,
 				84696000195E695B00C762B9 /* MultipeerGameTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

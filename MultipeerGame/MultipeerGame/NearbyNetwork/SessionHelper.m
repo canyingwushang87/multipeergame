@@ -8,8 +8,6 @@
 
 #import "SessionHelper.h"
 
-static NSString * const ServiceType = @"cm-p2ptest";
-
 @interface SessionHelper () <MCSessionDelegate>
 
 @property (nonatomic) MCAdvertiserAssistant *advertiserAssistant;
@@ -21,11 +19,6 @@ static NSString * const ServiceType = @"cm-p2ptest";
 
 #pragma mark - Accessor methods
 
-- (NSString *)serviceType
-{
-    return ServiceType;
-}
-
 - (NSUInteger)connectedPeersCount
 {
     return self.connectedPeerIDs.count;
@@ -33,20 +26,35 @@ static NSString * const ServiceType = @"cm-p2ptest";
 
 #pragma mark - Lifecycle methods
 
-- (instancetype)initWithDisplayName:(NSString *)displayName
+- (instancetype)initWithCreateRoom:(NSString *)roomName WithPlayerName:(NSString *)playerName
 {
     self = [super init];
     if (self) {
         self.connectedPeerIDs = [NSMutableArray new];
         
-        MCPeerID *peerID = [[MCPeerID alloc] initWithDisplayName:displayName];
+        MCPeerID *peerID = [[MCPeerID alloc] initWithDisplayName:playerName];
         _session = [[MCSession alloc] initWithPeer:peerID];
         _session.delegate = self;
-        
+        self.serviceType = roomName;
         self.advertiserAssistant = [[MCAdvertiserAssistant alloc] initWithServiceType:self.serviceType
                                                                         discoveryInfo:nil
                                                                               session:self.session];
         [self.advertiserAssistant start];
+    }
+    return self;
+}
+
+- (instancetype)initWithJoinRoom:(NSString *)roomName WithPlayerName:(NSString *)playerName
+{
+    self = [super init];
+    if (self) {
+        self.connectedPeerIDs = [NSMutableArray new];
+        
+        MCPeerID *peerID = [[MCPeerID alloc] initWithDisplayName:playerName];
+        _session = [[MCSession alloc] initWithPeer:peerID];
+        _session.delegate = self;
+        self.serviceType = roomName;
+        
     }
     return self;
 }
@@ -84,9 +92,8 @@ static NSString * const ServiceType = @"cm-p2ptest";
 
 - (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID
 {
-    UIImage *image = [UIImage imageWithData:data];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.delegate sessionHelperDidRecieveImage:image peer:peerID];
+        [self.delegate sessionHelperDidRecieveData:data peer:peerID];
     });
 }
 
@@ -126,13 +133,35 @@ didReceiveStream:(NSInputStream *)stream
     return self.connectedPeerIDs[index];
 }
 
-- (void)sendImage:(UIImage *)image peerID:(MCPeerID *)peerID
+- (void)sendData:(NSData *)data toPeerID:(MCPeerID *)peerID
 {
-    NSData *data = UIImageJPEGRepresentation(image, 0.9f);
-    
     NSError *error;
     [self.session sendData:data
                    toPeers:@[peerID]
+                  withMode:MCSessionSendDataReliable
+                     error:&error];
+    if (error) {
+        NSLog(@"Failed %@", error);
+    }
+}
+
+- (void)sendData:(NSData *)data toPeerIDs:(NSArray *)peerIDs
+{
+    NSError *error;
+    [self.session sendData:data
+                   toPeers:peerIDs
+                  withMode:MCSessionSendDataReliable
+                     error:&error];
+    if (error) {
+        NSLog(@"Failed %@", error);
+    }
+}
+
+- (void)sendDataToAll:(NSData *)data
+{
+    NSError *error;
+    [self.session sendData:data
+                   toPeers:self.connectedPeerIDs
                   withMode:MCSessionSendDataReliable
                      error:&error];
     if (error) {
