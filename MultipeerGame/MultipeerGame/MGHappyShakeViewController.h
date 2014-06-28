@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "SessionHelper.h"
 
-@interface MGHappyShakeViewController : UIViewController <SessionHelperDelegate>
+@interface MGHappyShakeViewController : UIViewController <SessionHelperDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, assign) IBOutlet UIView *backgroundView;
-@property (nonatomic, assign) IBOutlet UIButton *startButton;
+@property (nonatomic, assign) IBOutlet UITableView *resultTableView;
+
 
 @property (nonatomic, strong) SessionHelper *sessionHelper;
 

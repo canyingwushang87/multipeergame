@@ -35,6 +35,8 @@
 @property (nonatomic, assign) NSUInteger totalCount;
 
 @property (nonatomic, strong) NSMutableDictionary *resultsDict;
+@property (nonatomic, strong) NSDictionary *resultsDictBak;
+@property (nonatomic, strong) NSArray *sortedKeys;
 
 @end
 
@@ -96,6 +98,9 @@
     _friendsVC = [[MGFriendsExpandViewController alloc] init];
     _friendsVC.sessionHelper = _sessionHelper;
     [self.view addSubview:_friendsVC.view];
+    
+    _resultTableView.delegate = self;
+    _resultTableView.dataSource = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -326,14 +331,22 @@
     _action3.image = [UIImage imageNamed:str3];
     
     _totalCount = result1 + result2 + result3;
-    NSLog(@"%d", _totalCount);
+    NSLog(@"%ld", _totalCount);
+    
+    [self showDiceResult];
 }
 
 - (void)showDiceResult
 {
+    if (!_resultsDict)
+    {
+        _resultsDict = [[NSMutableDictionary alloc] init];
+    }
     NSDictionary *resultDict = @{@"score": [NSNumber numberWithInteger:_totalCount] };
     NSData *scoreData = [NSJSONSerialization dataWithJSONObject:resultDict options:0 error:nil];
     [_sessionHelper sendDataToAll:scoreData];
+    [_resultsDict setObject:[NSNumber numberWithInteger:_totalCount] forKey:@"本尊"];
+    [_resultTableView reloadData];
 }
 
 - (void)sessionHelperDidAddPeers:(SessionHelper *)sessionHelper addedPeer:(MCPeerID *)peerID
@@ -358,7 +371,8 @@
         NSNumber *resNumber = [jsonDict objectForKey:@"score"];
         if (resNumber)
         {
-            [_resultsDict setObject:resNumber forKey:peerID];
+            [_resultsDict setObject:resNumber forKey:peerID.displayName];
+            [_resultTableView reloadData];
         };
         NSDictionary *jsonDictM = [jsonDict objectForKey:@"message"];
         if (jsonDictM)
@@ -371,6 +385,41 @@
             }
         }
     }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellID = @"fuckfuckfuck";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (!cell)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    NSString *key = [self.sortedKeys objectAtIndex:indexPath.row];
+    cell.textLabel.text = key;
+    NSNumber *value = [_resultsDictBak objectForKey:key];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [value intValue]];
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    self.resultsDictBak = _resultsDict;
+    NSArray *keys = _resultsDictBak.allKeys;
+    self.sortedKeys = [keys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSNumber *num1 = [_resultsDictBak objectForKey:obj1];
+        NSNumber *num2 = [_resultsDictBak objectForKey:obj2];
+        if ([num1 intValue] > [num2 intValue])
+        {
+            return NSOrderedAscending;
+        }
+        else
+        {
+            return NSOrderedDescending;
+        }
+    }];
+    return [_resultsDictBak allKeys].count;
 }
 
 @end

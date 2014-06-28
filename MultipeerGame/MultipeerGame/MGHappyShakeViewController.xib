@@ -7,7 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MGHappyShakeViewController">
             <connections>
                 <outlet property="backgroundView" destination="meD-CX-nQt" id="gcM-uc-jxh"/>
-                <outlet property="startButton" destination="7RG-k3-O9t" id="CP9-Mu-7Qt"/>
+                <outlet property="resultTableView" destination="CgH-Yh-dZY" id="Viv-nN-Zd2"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,21 +17,15 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" id="meD-CX-nQt">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="369"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="362"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" red="1" green="1" blue="0.87843143940000001" alpha="1" colorSpace="deviceRGB"/>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7RG-k3-O9t">
-                    <rect key="frame" x="121" y="423" width="79" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
-                    <state key="normal" title="Ready->Go">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="startPlay:" destination="-1" eventType="touchUpInside" id="5fV-f0-lHd"/>
-                    </connections>
-                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="CgH-Yh-dZY" userLabel="tableview">
+                    <rect key="frame" x="0.0" y="370" width="320" height="200"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
