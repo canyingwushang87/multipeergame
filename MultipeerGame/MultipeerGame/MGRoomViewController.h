@@ -1,5 +1,5 @@
 //
-//  MGViewController.h
+//  MGRoomViewController.h
 //  MultipeerGame
 //
 //  Created by Admin on 14-6-28.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MGViewController : UIViewController<UITextFieldDelegate>
+@interface MGRoomViewController : UIViewController<UITextFieldDelegate>
+
+- (id)initWithName:(NSString *)myName;
 
 @end

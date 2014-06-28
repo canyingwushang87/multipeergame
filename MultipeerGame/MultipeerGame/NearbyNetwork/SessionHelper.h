@@ -16,20 +16,22 @@
 
 @required
 - (void)sessionHelperDidChangeConnectedPeers:(SessionHelper *)sessionHelper;
-- (void)sessionHelperDidRecieveImage:(UIImage *)image peer:(MCPeerID *)peerID;
+- (void)sessionHelperDidRecieveData:(NSData *)data peer:(MCPeerID *)peerID;
 
 @end
 
 @interface SessionHelper : NSObject
 
 @property (nonatomic, readonly) MCSession *session;
-@property (nonatomic, readonly) NSString *serviceType;
+@property (nonatomic, retain) NSString *serviceType;
 @property (nonatomic, readonly) NSUInteger connectedPeersCount;
 @property (nonatomic, weak) id <SessionHelperDelegate> delegate;
 
-- (instancetype)initWithDisplayName:(NSString *)displayName;
-
+- (instancetype)initWithCreateRoom:(NSString *)roomName WithPlayerName:(NSString *)playerName;
+- (instancetype)initWithJoinRoom:(NSString *)roomName WithPlayerName:(NSString *)playerName;
 - (MCPeerID *)connectedPeerIDAtIndex:(NSUInteger)index;
-- (void)sendImage:(UIImage *)image peerID:(MCPeerID *)peerID;
+- (void)sendData:(NSData *)data toPeerID:(MCPeerID *)peerID;
+- (void)sendData:(NSData *)data toPeerIDs:(NSArray *)peerIDs;
+- (void)sendDataToAll:(NSData *)data;
 
 @end
