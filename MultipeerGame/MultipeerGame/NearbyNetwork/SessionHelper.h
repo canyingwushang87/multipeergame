@@ -22,6 +22,7 @@
 
 @interface SessionHelper : NSObject
 
+@property (nonatomic) NSMutableArray *connectedPeerIDs;
 @property (nonatomic, readonly) MCSession *session;
 @property (nonatomic, retain) NSString *serviceType;
 @property (nonatomic, readonly) NSUInteger connectedPeersCount;

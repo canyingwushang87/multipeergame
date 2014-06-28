@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+@import MultipeerConnectivity;
 
-@interface MGRoomViewController : UIViewController<UITextFieldDelegate>
+@interface MGRoomViewController : UIViewController<UITextFieldDelegate, MCBrowserViewControllerDelegate>
 
 - (id)initWithName:(NSString *)myName;
 

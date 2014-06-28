@@ -8,10 +8,11 @@
 
 #import "SessionHelper.h"
 
-@interface SessionHelper () <MCSessionDelegate>
+@interface SessionHelper () <MCSessionDelegate, MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate>
 
-@property (nonatomic) MCAdvertiserAssistant *advertiserAssistant;
-@property (nonatomic) NSMutableArray *connectedPeerIDs;
+@property (nonatomic) MCNearbyServiceAdvertiser *advertiserAssistant;
+@property (nonatomic) MCNearbyServiceBrowser *nearbySBrowser;
+@property (nonatomic) MCPeerID *myPeerID;
 
 @end
 
@@ -26,20 +27,23 @@
 
 #pragma mark - Lifecycle methods
 
-- (instancetype)initWithCreateRoom:(NSString *)roomName WithPlayerName:(NSString *)playerName
+- (instancetype)initWithCreateRoom:(NSString *)roomName WithPlayerName:(NSString *)playerName;
 {
     self = [super init];
     if (self) {
         self.connectedPeerIDs = [NSMutableArray new];
         
-        MCPeerID *peerID = [[MCPeerID alloc] initWithDisplayName:playerName];
-        _session = [[MCSession alloc] initWithPeer:peerID];
+        _myPeerID = [[MCPeerID alloc] initWithDisplayName:playerName];
+        _session = [[MCSession alloc] initWithPeer:_myPeerID];
         _session.delegate = self;
         self.serviceType = roomName;
-        self.advertiserAssistant = [[MCAdvertiserAssistant alloc] initWithServiceType:self.serviceType
-                                                                        discoveryInfo:nil
-                                                                              session:self.session];
-        [self.advertiserAssistant start];
+        self.advertiserAssistant = [[MCNearbyServiceAdvertiser alloc] initWithPeer:_myPeerID discoveryInfo:nil serviceType:_serviceType];
+        _advertiserAssistant.delegate = self;
+        [_advertiserAssistant startAdvertisingPeer];
+        
+        _nearbySBrowser = [[MCNearbyServiceBrowser alloc] initWithPeer:_myPeerID serviceType:self.serviceType];
+        _nearbySBrowser.delegate = self;
+        [_nearbySBrowser startBrowsingForPeers];
     }
     return self;
 }
@@ -50,18 +54,25 @@
     if (self) {
         self.connectedPeerIDs = [NSMutableArray new];
         
-        MCPeerID *peerID = [[MCPeerID alloc] initWithDisplayName:playerName];
-        _session = [[MCSession alloc] initWithPeer:peerID];
+        _myPeerID = [[MCPeerID alloc] initWithDisplayName:playerName];
+        _session = [[MCSession alloc] initWithPeer:_myPeerID];
         _session.delegate = self;
         self.serviceType = roomName;
+        self.advertiserAssistant = [[MCNearbyServiceAdvertiser alloc] initWithPeer:_myPeerID discoveryInfo:@{@"master":@"1"} serviceType:_serviceType];
+        _advertiserAssistant.delegate = self;
+        [self.advertiserAssistant startAdvertisingPeer];
         
+        _nearbySBrowser = [[MCNearbyServiceBrowser alloc] initWithPeer:_myPeerID serviceType:self.serviceType];
+        _nearbySBrowser.delegate = self;
+        [_nearbySBrowser startBrowsingForPeers];
     }
     return self;
 }
 
 - (void)dealloc
 {
-    [self.advertiserAssistant stop];
+    [self.advertiserAssistant stopAdvertisingPeer];
+    [self.nearbySBrowser stopBrowsingForPeers];
     [self.session disconnect];
 }
 
@@ -167,6 +178,33 @@ didReceiveStream:(NSInputStream *)stream
     if (error) {
         NSLog(@"Failed %@", error);
     }
+}
+
+#pragma mark - MCNearbyServiceBrowserDelegate methods
+
+// Found a nearby advertising peer
+- (void)browser:(MCNearbyServiceBrowser *)browser foundPeer:(MCPeerID *)peerID withDiscoveryInfo:(NSDictionary *)info
+{
+    [browser invitePeer:peerID toSession:_session withContext:nil timeout:60*60];
+}
+
+// A nearby peer has stopped advertising
+- (void)browser:(MCNearbyServiceBrowser *)browser lostPeer:(MCPeerID *)peerID
+{
+    
+}
+
+#pragma mark - MCNearbyServiceAdvertiserDelegate methods
+
+- (void)advertiser:(MCNearbyServiceAdvertiser *)advertiser didReceiveInvitationFromPeer:(MCPeerID *)peerID withContext:(NSData *)context invitationHandler:(void(^)(BOOL accept, MCSession *session))invitationHandler
+{
+    invitationHandler(YES, _session);
+}
+
+// Advertising did not start due to an error
+- (void)advertiser:(MCNearbyServiceAdvertiser *)advertiser didNotStartAdvertisingPeer:(NSError *)error
+{
+    
 }
 
 @end
