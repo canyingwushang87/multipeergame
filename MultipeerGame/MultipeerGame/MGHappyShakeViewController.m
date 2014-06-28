@@ -20,7 +20,7 @@
 #define WIDTH       200
 #define HEIGHT      260
 
-@interface MGHappyShakeViewController ()<SFCountdownViewDelegate>
+@interface MGHappyShakeViewController ()<SFCountdownViewDelegate, SessionHelperDelegate>
 
 @property (nonatomic, retain) UIImageView *image1;
 @property (nonatomic, retain) UIImageView *image2;
@@ -332,6 +332,16 @@
     NSDictionary *resultDict = @{@"score": [NSNumber numberWithInteger:_totalCount] };
     NSData *scoreData = [NSJSONSerialization dataWithJSONObject:resultDict options:0 error:nil];
     [_sessionHelper sendDataToAll:scoreData];
+}
+
+- (void)sessionHelperDidAddPeers:(SessionHelper *)sessionHelper addedPeer:(MCPeerID *)peerID
+{
+
+}
+
+- (void)sessionHelperDidRemovePeers:(SessionHelper *)sessionHelper removedPeer:(MCPeerID *)peerID
+{
+    
 }
 
 - (void)sessionHelperDidRecieveData:(NSData *)data peer:(MCPeerID *)peerID

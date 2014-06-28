@@ -142,12 +142,16 @@
 #pragma mark - events
 - (void)startPlay
 {
+    NSData *startData = [NSJSONSerialization dataWithJSONObject:@{@"startplay": @"start"} options:0 error:nil];
+    [self.sessionHelper sendDataToAll:startData];
+    
     MGHappyShakeViewController * shakeViewController = [[MGHappyShakeViewController alloc] initWithNibName:@"MGHappyShakeViewController" bundle:nil];
     shakeViewController.sessionHelper = self.sessionHelper;
     [self.navigationController pushViewController:shakeViewController animated:YES];
 }
 
 #pragma mark - delegate
+
 - (void)sessionHelperDidAddPeers:(SessionHelper *)sessionHelper addedPeer:(MCPeerID *)peerID
 {
     [self addNewUser:peerID.displayName];
@@ -157,9 +161,15 @@
 {
     
 }
+
 - (void)sessionHelperDidRecieveData:(NSData *)data peer:(MCPeerID *)peerID
 {
-    
+    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    NSString *startStr = jsonDict[@"startplay"];
+    if (startStr && startStr .length > 0)
+    {
+        [self startPlay];
+    }
 }
 
 @end
