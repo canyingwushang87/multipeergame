@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SessionHelper.h"
 
 @interface MGHappyShakeViewController : UIViewController
 
