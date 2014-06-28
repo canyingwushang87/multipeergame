@@ -260,19 +260,6 @@
     [self hideFriends];
 }
 
--(void)sendMessage
-{
-//    NSLog(@"%@", _inputTextField.text);
-//    [_inputTextField resignFirstResponder];
-    _messageLabel.text = [NSString stringWithFormat:@"%@:%@", _nameLabel.text, _inputTextField.text];//_inputTextField.text;
-    [self messageShow];
-
-    [self hideBottomView];
-    _inputTextField.text = @"";
-
-}
-
-
 - (void)messageShow
 {
     _isMessageShow = YES;
@@ -302,7 +289,38 @@
     _messageLabel.frame = CGRectMake(0, -KFRIEND_MESSAGE_HEIGHT,  _messageLabel.frame.size.width, KFRIEND_MESSAGE_HEIGHT);
     _isMessageShow = NO;
 }
+
+- (void)showMessage:(NSString *)name message:(NSString *)message
+{
+    _messageLabel.text = [NSString stringWithFormat:@"%@: %@", name, message];
+    [self messageShow];
+    
+//    [self hideBottomView];
+//    _inputTextField.text = @"";
+}
+
+-(void)sendMessage
+{
+//    _messageLabel.text = [NSString stringWithFormat:@"%@:%@", _nameLabel.text, _inputTextField.text];//_inputTextField.text;
+//    [self messageShow];
+    
+    NSMutableDictionary *contentDict = [[NSMutableDictionary alloc] init];
+    [contentDict setValue:_nameLabel.text forKey:@"name"];
+    [contentDict setValue:_inputTextField.text forKey:@"content"];
+    
+    NSMutableDictionary *messageDict = [[NSMutableDictionary alloc] init];
+    [messageDict setValue:contentDict forKey:@"message"];
+    
+    NSData *scoreData = [NSJSONSerialization dataWithJSONObject:messageDict options:0 error:nil];
+   
+    [_sessionHelper sendDataToAll:scoreData];
+    
+    [self hideBottomView];
+    _inputTextField.text = @"";
+}
+
 @end
+
 
 @implementation Friend
 

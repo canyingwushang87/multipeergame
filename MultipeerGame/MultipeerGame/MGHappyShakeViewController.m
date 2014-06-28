@@ -80,8 +80,6 @@
     [_backgroundView addSubview:_image3];
     
     // Do any additional setup after loading the view from its nib.
-    _friendsVC = [[MGFriendsExpandViewController alloc] init];
-    [self.view addSubview:_friendsVC.view];
     
     _countDownView = [[SFCountdownView alloc] init];
     _countDownView.frame = self.view.bounds;
@@ -94,6 +92,10 @@
     {
         _sessionHelper.delegate = self;
     }
+    
+    _friendsVC = [[MGFriendsExpandViewController alloc] init];
+    _friendsVC.sessionHelper = _sessionHelper;
+    [self.view addSubview:_friendsVC.view];
 }
 
 - (void)didReceiveMemoryWarning
@@ -357,6 +359,16 @@
         if (resNumber)
         {
             [_resultsDict setObject:resNumber forKey:peerID];
+        };
+        NSDictionary *jsonDictM = [jsonDict objectForKey:@"message"];
+        if (jsonDictM)
+        {
+            NSString *name = [jsonDictM objectForKey:@"name"];
+            NSString *content = [jsonDictM objectForKey:@"content"];
+            if (name && content)
+            {
+                [_friendsVC showMessage:name message:content];
+            }
         }
     }
 }

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SessionHelper.h"
 
 #define KFRIEND_APPLICATION_SIZE_WIDTH [[UIScreen mainScreen] bounds].size.width
 #define KFRIEND_APPLICATION_SIZE_HEIGHT [[UIScreen mainScreen] bounds].size.height
@@ -32,5 +33,8 @@
 @interface MGFriendsExpandViewController : UIViewController
 
 @property (nonatomic, retain) NSMutableArray *friends;
+@property (nonatomic, strong) SessionHelper *sessionHelper;
+
+- (void)showMessage:(NSString *)name message:(NSString *)message;
 
 @end
