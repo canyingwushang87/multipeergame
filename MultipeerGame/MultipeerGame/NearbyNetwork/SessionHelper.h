@@ -35,5 +35,6 @@
 - (void)sendData:(NSData *)data toPeerID:(MCPeerID *)peerID;
 - (void)sendData:(NSData *)data toPeerIDs:(NSArray *)peerIDs;
 - (void)sendDataToAll:(NSData *)data;
+- (void)sendData:(NSData *)data toPlayer:(NSString *)displayName;
 
 @end

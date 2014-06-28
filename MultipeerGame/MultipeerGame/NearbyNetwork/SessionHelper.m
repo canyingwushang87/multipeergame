@@ -159,6 +159,25 @@ didReceiveStream:(NSInputStream *)stream
     }
 }
 
+- (void)sendData:(NSData *)data toPlayer:(NSString *)displayName
+{
+    for (MCPeerID *item in self.connectedPeerIDs)
+    {
+        if ([item.displayName isEqualToString:displayName])
+        {
+            NSError *error;
+            [self.session sendData:data
+                           toPeers:@[item]
+                          withMode:MCSessionSendDataReliable
+                             error:&error];
+            if (error) {
+                NSLog(@"Failed %@", error);
+            }
+            break;
+        }
+    }
+}
+
 #pragma mark - MCNearbyServiceBrowserDelegate methods
 
 // Found a nearby advertising peer
