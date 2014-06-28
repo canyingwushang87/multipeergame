@@ -8,6 +8,7 @@
 
 #import "MGViewController.h"
 #import "MGRoomViewController.h"
+#import "MGHappyShakeViewController.h"
 
 @interface MGViewController ()
 
@@ -47,11 +48,17 @@
     return NO;
 }
 
+//- (void)startPlay
+//{
+//    MGRoomViewController *roomVC = [[MGRoomViewController alloc] initWithName:_nameText.text];
+//    UINavigationController *naviVC = [[UINavigationController alloc] initWithRootViewController:roomVC];
+//    [self presentViewController:naviVC animated:YES completion:nil];
+//}
+
 - (void)startPlay
 {
-    MGRoomViewController *roomVC = [[MGRoomViewController alloc] initWithName:_nameText.text];
-    UINavigationController *naviVC = [[UINavigationController alloc] initWithRootViewController:roomVC];
-    [self presentViewController:naviVC animated:YES completion:nil];
+    MGHappyShakeViewController *roomVC = [[MGHappyShakeViewController alloc] initWithNibName:@"MGHappyShakeViewController" bundle:nil];
+    [self.navigationController pushViewController:roomVC animated:YES];
 }
 
 @end
