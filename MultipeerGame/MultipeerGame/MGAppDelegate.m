@@ -7,12 +7,29 @@
 //
 
 #import "MGAppDelegate.h"
+#import "MGViewController.h"
+
+@interface MGAppDelegate ()
+
+@property (strong, nonatomic) MGViewController *mainViewController;
+
+@end
 
 @implementation MGAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
+    _mainViewController = [[MGViewController alloc] init];
+    
+    _naviVC = [[UINavigationController alloc] initWithRootViewController:_mainViewController];
+    
+    _window.rootViewController = _naviVC;
+    
+    [_window makeKeyAndVisible];
+    
     return YES;
 }
 							
