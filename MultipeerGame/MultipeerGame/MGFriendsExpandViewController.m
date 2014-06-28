@@ -29,6 +29,8 @@
 @property (nonatomic, assign) CGRect backButtonFrame;
 @property (nonatomic, assign) BOOL isAppear;
 
+@property (nonatomic, assign) BOOL isMessageShowCanceled;
+
 @end
 
 @implementation MGFriendsExpandViewController
@@ -66,7 +68,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    _backButtonFrame = CGRectMake(0, 20, KFRIEND_EXPAND_LIST_WIDTH, KFRIEND_EXPAND_BACK_BUTTON_HEIGHT);
+    _backButtonFrame = CGRectMake(KFRIEND_APPLICATION_SIZE_WIDTH - KFRIEND_EXPAND_LIST_WIDTH, 20, KFRIEND_EXPAND_LIST_WIDTH, KFRIEND_EXPAND_BACK_BUTTON_HEIGHT);
     MGFriendsExpandView *contentView = (MGFriendsExpandView *)self.view;
     contentView.isAppear = NO;
     contentView.backButtonFrame = _backButtonFrame;
@@ -80,7 +82,7 @@
     
     [self addBackButton];
     
-    _maskView = [[UIView alloc] initWithFrame:CGRectMake(-KFRIEND_EXPAND_LIST_WIDTH, KFRIEND_EXPAND_BACK_BUTTON_HEIGHT + 20, KFRIEND_EXPAND_LIST_WIDTH, KFRIEDN_EXPAND_LIST_HEIGHT)];
+    _maskView = [[UIView alloc] initWithFrame:CGRectMake(KFRIEND_APPLICATION_SIZE_WIDTH, KFRIEND_EXPAND_BACK_BUTTON_HEIGHT + 20, KFRIEND_EXPAND_LIST_WIDTH, KFRIEDN_EXPAND_LIST_HEIGHT)];
     _maskView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
     [self.view addSubview:_maskView];
 
@@ -134,7 +136,7 @@
 - (void)addBackButton
 {
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton setImage:[UIImage imageNamed:@"dice_1.png"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"friends.png"] forState:UIControlStateNormal];
     backButton.frame = _backButtonFrame;
     [self.view addSubview:backButton];
     [backButton addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -144,7 +146,6 @@
 {
     if (_maskView.frame.origin.x == 0)
     {
-//        [self hideFriends];
         [self hideFriendExpand];
     }
     else
@@ -158,7 +159,7 @@
     self.view.backgroundColor = [UIColor clearColor];
   
     [UIView animateWithDuration:0.3 animations:^(void) {
-        _maskView.frame = CGRectMake(0,  _maskView.frame.origin.y, KFRIEND_EXPAND_LIST_WIDTH, _maskView.bounds.size.height);
+        _maskView.frame = CGRectMake(KFRIEND_APPLICATION_SIZE_WIDTH - KFRIEND_EXPAND_LIST_WIDTH,  _maskView.frame.origin.y, KFRIEND_EXPAND_LIST_WIDTH, _maskView.bounds.size.height);
     } completion:^(BOOL finished) {
         ;
     }];
@@ -175,7 +176,7 @@
     self.view.backgroundColor = [UIColor clearColor];
     [UIView animateWithDuration:0.3 animations:^(void)
      {
-         _maskView.frame = CGRectMake(-KFRIEND_EXPAND_LIST_WIDTH, _maskView.frame.origin.y, KFRIEND_EXPAND_LIST_WIDTH, _maskView.bounds.size.height);
+         _maskView.frame = CGRectMake(KFRIEND_APPLICATION_SIZE_WIDTH, _maskView.frame.origin.y, KFRIEND_EXPAND_LIST_WIDTH, _maskView.bounds.size.height);
      } completion:^(BOOL finished)
      {
          ;
@@ -237,8 +238,7 @@
 {
     _currentFriend = [_friends objectAtIndex:indexPath.row];
     _bottomView.hidden = NO;
-    _nameLabel.text = [NSString stringWithFormat: @"To %@", _currentFriend.name];
-    NSLog(@"%@", _currentFriend.name);
+    _nameLabel.text = [NSString stringWithFormat: @"To %@:", _currentFriend.name];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -246,7 +246,6 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [self sendMessage];
-    
     return YES;
 }
 
@@ -259,12 +258,11 @@
 {
     _bottomView.frame = CGRectMake(0, KFRIEND_APPLICATION_SIZE_HEIGHT - 216 - KFRIEND_EXPAND_KEYBOARD_HEIGHT, KFRIEND_APPLICATION_SIZE_WIDTH - 20, KFRIEND_EXPAND_KEYBOARD_HEIGHT);
     [self hideFriends];
-    
 }
 
 -(void)sendMessage
 {
-    NSLog(@"%@", _inputTextField.text);
+//    NSLog(@"%@", _inputTextField.text);
 //    [_inputTextField resignFirstResponder];
     _messageLabel.text = [NSString stringWithFormat:@"%@:%@", _nameLabel.text, _inputTextField.text];//_inputTextField.text;
     [self messageShow];
@@ -282,18 +280,24 @@
     
     if (_isMessageShow)
     {
+        _isMessageShowCanceled = YES;
         _messageLabel.frame = CGRectMake(0,  -KFRIEND_MESSAGE_HEIGHT, _messageLabel.frame.size.width, KFRIEND_MESSAGE_HEIGHT);
     }
     
     [UIView animateWithDuration:0.3 animations:^(void) {
         _messageLabel.frame = CGRectMake(0,  0, _messageLabel.frame.size.width, KFRIEND_MESSAGE_HEIGHT);
     } completion:^(BOOL finished) {
-        [self performSelector:@selector(messageHide) withObject:nil afterDelay:2.0];
+        _isMessageShowCanceled = NO;
+        [self performSelector:@selector(messageHide) withObject:nil afterDelay:3.0];
     }];
 }
 
 - (void)messageHide
 {
+    if (_isMessageShowCanceled)
+    {
+        return;
+    }
     self.view.backgroundColor = [UIColor clearColor];
     _messageLabel.frame = CGRectMake(0, -KFRIEND_MESSAGE_HEIGHT,  _messageLabel.frame.size.width, KFRIEND_MESSAGE_HEIGHT);
     _isMessageShow = NO;

@@ -61,6 +61,14 @@
     [_backgroundView addSubview:_image3];
     
     // Do any additional setup after loading the view from its nib.
+    
+    
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backButton setFrame:CGRectMake(0, 20, 80, 40)];
+    [backButton setImage:[UIImage imageNamed:@"home.png"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backButton];
+    
     _friendsVC = [[MGFriendsExpandViewController alloc] init];
     [self.view addSubview:_friendsVC.view];
 }
@@ -71,4 +79,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)backAction
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end
