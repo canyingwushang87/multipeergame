@@ -22,6 +22,7 @@
 		84695FED195E695B00C762B9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84695FEC195E695B00C762B9 /* Images.xcassets */; };
 		8469600C195E69F900C762B9 /* SessionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8469600B195E69F900C762B9 /* SessionHelper.m */; };
 		84696010195E8E0B00C762B9 /* MGRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8469600F195E8E0B00C762B9 /* MGRoomViewController.m */; };
+		84696015195F0F0800C762B9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84696014195F0F0800C762B9 /* Default-568h@2x.png */; };
 		D47D9156195EA32B00401724 /* MGHappyShakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D47D9154195EA32B00401724 /* MGHappyShakeViewController.m */; };
 		D47D9157195EA32B00401724 /* MGHappyShakeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D47D9155195EA32B00401724 /* MGHappyShakeViewController.xib */; };
 		D47D9175195EAB8B00401724 /* dice_1.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D916B195EAB8B00401724 /* dice_1.png */; };
@@ -74,6 +75,7 @@
 		8469600B195E69F900C762B9 /* SessionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionHelper.m; sourceTree = "<group>"; };
 		8469600E195E8E0B00C762B9 /* MGRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGRoomViewController.h; sourceTree = "<group>"; };
 		8469600F195E8E0B00C762B9 /* MGRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGRoomViewController.m; sourceTree = "<group>"; };
+		84696014195F0F0800C762B9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D47D9153195EA32B00401724 /* MGHappyShakeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGHappyShakeViewController.h; sourceTree = "<group>"; };
 		D47D9154195EA32B00401724 /* MGHappyShakeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGHappyShakeViewController.m; sourceTree = "<group>"; };
 		D47D9155195EA32B00401724 /* MGHappyShakeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MGHappyShakeViewController.xib; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 		84695FDB195E695B00C762B9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				84696014195F0F0800C762B9 /* Default-568h@2x.png */,
 				D47D9158195EA82800401724 /* Images */,
 				84695FDD195E695B00C762B9 /* InfoPlist.strings */,
 				84695FE0195E695B00C762B9 /* main.m */,
@@ -292,6 +295,7 @@
 				4C14DC7F195EE5DC0012C0AD /* home.png in Resources */,
 				84695FDF195E695B00C762B9 /* InfoPlist.strings in Resources */,
 				D47D917B195EAB8B00401724 /* dice_Action_0.png in Resources */,
+				84696015195F0F0800C762B9 /* Default-568h@2x.png in Resources */,
 				D47D918C195EECC200401724 /* icon1.png in Resources */,
 				D47D918E195EECC200401724 /* icon3.png in Resources */,
 				D47D917A195EAB8B00401724 /* dice_6.png in Resources */,
@@ -429,7 +433,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -446,7 +449,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
