@@ -13,4 +13,6 @@
 @property (nonatomic, assign) IBOutlet UIView *backgroundView;
 @property (nonatomic, assign) IBOutlet UIButton *startButton;
 
+@property (nonatomic, strong) SessionHelper *sessionHelper;
+
 @end

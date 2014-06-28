@@ -32,6 +32,7 @@
 		D47D917C195EAB8B00401724 /* dice_Action_1.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D9172195EAB8B00401724 /* dice_Action_1.png */; };
 		D47D917D195EAB8B00401724 /* dice_Action_2.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D9173195EAB8B00401724 /* dice_Action_2.png */; };
 		D47D917E195EAB8B00401724 /* dice_Action_3.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D9174195EAB8B00401724 /* dice_Action_3.png */; };
+		D47D9181195EE0BD00401724 /* SFCountdownView.m in Sources */ = {isa = PBXBuildFile; fileRef = D47D9180195EE0BD00401724 /* SFCountdownView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,8 @@
 		D47D9172195EAB8B00401724 /* dice_Action_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_Action_1.png; sourceTree = "<group>"; };
 		D47D9173195EAB8B00401724 /* dice_Action_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_Action_2.png; sourceTree = "<group>"; };
 		D47D9174195EAB8B00401724 /* dice_Action_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_Action_3.png; sourceTree = "<group>"; };
+		D47D917F195EE0BD00401724 /* SFCountdownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFCountdownView.h; sourceTree = "<group>"; };
+		D47D9180195EE0BD00401724 /* SFCountdownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFCountdownView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +121,8 @@
 		84695FDA195E695B00C762B9 /* MultipeerGame */ = {
 			isa = PBXGroup;
 			children = (
+				D47D917F195EE0BD00401724 /* SFCountdownView.h */,
+				D47D9180195EE0BD00401724 /* SFCountdownView.m */,
 				4C14DC76195EB6A10012C0AD /* MGFriendsExpandView.h */,
 				4C14DC77195EB6A10012C0AD /* MGFriendsExpandView.m */,
 				4C14DC78195EB6A10012C0AD /* MGFriendsExpandViewController.h */,
@@ -267,6 +272,7 @@
 				84696010195E8E0B00C762B9 /* MGRoomViewController.m in Sources */,
 				8469600C195E69F900C762B9 /* SessionHelper.m in Sources */,
 				84695FE1195E695B00C762B9 /* main.m in Sources */,
+				D47D9181195EE0BD00401724 /* SFCountdownView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

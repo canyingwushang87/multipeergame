@@ -9,8 +9,9 @@
 #import "MGHappyShakeViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import <AudioToolbox/AudioToolbox.h>
-
+#import "SFCountdownView.h"
 #import "MGFriendsExpandViewController.h"
+#import "SessionHelper.h"
 
 #define ANIMATION_PLAYIMAGE_DURATION  0.4f
 #define ANIMATION_MOVE_DURATION  1.0f
@@ -19,7 +20,7 @@
 #define WIDTH       200
 #define HEIGHT      260
 
-@interface MGHappyShakeViewController ()
+@interface MGHappyShakeViewController ()<SFCountdownViewDelegate>
 
 @property (nonatomic, retain) UIImageView *image1;
 @property (nonatomic, retain) UIImageView *image2;
@@ -27,9 +28,11 @@
 @property (nonatomic, retain) UIImageView *action1;
 @property (nonatomic, retain) UIImageView *action2;
 @property (nonatomic, retain) UIImageView *action3;
-
+@property (nonatomic, strong) SFCountdownView *countDownView;
 
 @property (nonatomic, strong) MGFriendsExpandViewController *friendsVC;
+
+@property (nonatomic, assign) NSUInteger totalCount;
 
 @end
 
@@ -62,26 +65,39 @@
     
     //逐个添加骰子
     _image1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"dice_%d.png", index1]]];
-    _image1.frame = CGRectMake(75.0, 115.0, 45.0, 45.0);
+    _image1.frame = CGRectMake(75.0, 75.0, 100.0, 100.0);
     [_backgroundView addSubview:_image1];
     
     _image2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"dice_%d.png", index2]]];
-    _image2.frame = CGRectMake(135.0, 115.0, 45.0, 45.0);
+    _image2.frame = CGRectMake(135.0, 205.0, 100.0, 100.0);
     [_backgroundView addSubview:_image2];
     
     _image3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"dice_%d.png", index3]]];
-    _image3.frame = CGRectMake(195.0, 115.0, 45.0, 45.0);
+    _image3.frame = CGRectMake(195.0, 115.0, 100.0, 100.0);
     [_backgroundView addSubview:_image3];
     
     // Do any additional setup after loading the view from its nib.
     _friendsVC = [[MGFriendsExpandViewController alloc] init];
     [self.view addSubview:_friendsVC.view];
+    
+    _countDownView = [[SFCountdownView alloc] init];
+    _countDownView.frame = self.view.bounds;
+    [self.view addSubview:_countDownView];
+    [_countDownView updateAppearance];
+    [_countDownView start];
+    _countDownView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) countdownFinished:(SFCountdownView *)view
+{
+    [view removeFromSuperview];
+    [self bobing];
 }
 
 - (IBAction)startPlay:(id)sender
@@ -137,7 +153,7 @@
                           [UIImage imageNamed:@"dice_Action_1.png"],
                           [UIImage imageNamed:@"dice_Action_3.png"],nil];
     //骰子1的转动图片切换
-    UIImageView *dong11 = [[UIImageView alloc] initWithFrame:CGRectMake(85.0, 115.0, 45.0, 45.0)];
+    UIImageView *dong11 = [[UIImageView alloc] initWithFrame:CGRectMake(85.0, 75.0, 100.0, 100.0)];
     dong11.animationImages = myImages;
     dong11.animationDuration = ANIMATION_PLAYIMAGE_DURATION;
     [dong11 startAnimating];
@@ -145,7 +161,7 @@
     _action1 = dong11;
     
     //骰子2的转动图片切换
-    UIImageView *dong12 = [[UIImageView alloc] initWithFrame:CGRectMake(135.0, 115.0, 45.0, 45.0)];
+    UIImageView *dong12 = [[UIImageView alloc] initWithFrame:CGRectMake(135.0, 205.0, 100.0, 100.0)];
     dong12.animationImages = myImages2;
     dong12.animationDuration = ANIMATION_PLAYIMAGE_DURATION;
     [dong12 startAnimating];
@@ -153,7 +169,7 @@
     _action2 = dong12;
     
     //骰子3的转动图片切换
-    UIImageView *dong13 = [[UIImageView alloc] initWithFrame:CGRectMake(195.0, 115.0, 45.0, 45.0)];
+    UIImageView *dong13 = [[UIImageView alloc] initWithFrame:CGRectMake(195.0, 115.0, 100.0, 100.0)];
     dong13.animationImages = myImages3;
     dong13.animationDuration = ANIMATION_PLAYIMAGE_DURATION;
     [dong13 startAnimating];
@@ -192,7 +208,7 @@
     [animation setDuration:ANIMATION_MOVE_DURATION];
     [animation setDelegate:self];
     animation.repeatCount = ANIMATION_MOVE_REPEATCOUNT;
-    [_action1.layer setPosition:CGPointMake(140.0, 200.0)];
+    [_action1.layer setPosition:CGPointMake(85.0, 75.0)];
     
     randx = (rand() % WIDTH) + 50.0f;
     randy = (rand() % HEIGHT) + 50.0f;
@@ -216,7 +232,7 @@
     [animation2 setDuration:ANIMATION_MOVE_DURATION];
     animation2.repeatCount = ANIMATION_MOVE_REPEATCOUNT;
     [animation2 setDelegate:self];
-    [_action1.layer setPosition:CGPointMake(190.0, 175.0)];
+    [_action2.layer setPosition:CGPointMake(135.0, 205.0)];
     
     
     randx = (rand() % WIDTH) + 50.0f;
@@ -241,7 +257,7 @@
     [animation3 setDuration:ANIMATION_MOVE_DURATION];
     animation3.repeatCount = ANIMATION_MOVE_REPEATCOUNT;
     [animation3 setDelegate:self];
-    [_action3.layer setPosition:CGPointMake(100.0, 130.0)];
+    [_action3.layer setPosition:CGPointMake(195.0, 115.0)];
     
     
     //******************动画组合******************
@@ -269,6 +285,7 @@
     [animGroup3 setDelegate:self];
     [[_action3 layer] addAnimation:animGroup3 forKey:@"position"];
 }
+
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
     //停止骰子自身的转动
@@ -290,6 +307,14 @@
     int result3 = (rand() % 5) +1 ;
     NSString *str3 = [NSString stringWithFormat:@"dice_%d.png", result3];
     _action3.image = [UIImage imageNamed:str3];
+    
+    _totalCount = result1 + result2 + result3;
+    NSLog(@"%d", _totalCount);
+}
+
+- (void)showDiceResult
+{
+    ;
 }
 
 @end
