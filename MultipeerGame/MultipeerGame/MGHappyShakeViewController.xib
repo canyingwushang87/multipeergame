@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MGHappyShakeViewController">
             <connections>
                 <outlet property="backgroundView" destination="meD-CX-nQt" id="gcM-uc-jxh"/>
+                <outlet property="startButton" destination="7RG-k3-O9t" id="CP9-Mu-7Qt"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -27,6 +28,9 @@
                     <state key="normal" title="Ready->Go">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="startPlay:" destination="-1" eventType="touchUpInside" id="5fV-f0-lHd"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
