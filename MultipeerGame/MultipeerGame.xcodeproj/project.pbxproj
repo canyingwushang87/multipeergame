@@ -18,6 +18,18 @@
 		84695FED195E695B00C762B9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84695FEC195E695B00C762B9 /* Images.xcassets */; };
 		8469600C195E69F900C762B9 /* SessionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8469600B195E69F900C762B9 /* SessionHelper.m */; };
 		84696010195E8E0B00C762B9 /* MGRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8469600F195E8E0B00C762B9 /* MGRoomViewController.m */; };
+		D47D9156195EA32B00401724 /* MGHappyShakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D47D9154195EA32B00401724 /* MGHappyShakeViewController.m */; };
+		D47D9157195EA32B00401724 /* MGHappyShakeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D47D9155195EA32B00401724 /* MGHappyShakeViewController.xib */; };
+		D47D9175195EAB8B00401724 /* dice_1.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D916B195EAB8B00401724 /* dice_1.png */; };
+		D47D9176195EAB8B00401724 /* dice_2.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D916C195EAB8B00401724 /* dice_2.png */; };
+		D47D9177195EAB8B00401724 /* dice_3.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D916D195EAB8B00401724 /* dice_3.png */; };
+		D47D9178195EAB8B00401724 /* dice_4.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D916E195EAB8B00401724 /* dice_4.png */; };
+		D47D9179195EAB8B00401724 /* dice_5.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D916F195EAB8B00401724 /* dice_5.png */; };
+		D47D917A195EAB8B00401724 /* dice_6.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D9170195EAB8B00401724 /* dice_6.png */; };
+		D47D917B195EAB8B00401724 /* dice_Action_0.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D9171195EAB8B00401724 /* dice_Action_0.png */; };
+		D47D917C195EAB8B00401724 /* dice_Action_1.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D9172195EAB8B00401724 /* dice_Action_1.png */; };
+		D47D917D195EAB8B00401724 /* dice_Action_2.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D9173195EAB8B00401724 /* dice_Action_2.png */; };
+		D47D917E195EAB8B00401724 /* dice_Action_3.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D9174195EAB8B00401724 /* dice_Action_3.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,13 +48,23 @@
 		84695FEA195E695B00C762B9 /* MGViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MGViewController.m; sourceTree = "<group>"; };
 		84695FEC195E695B00C762B9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		84695FF3195E695B00C762B9 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		84695FFB195E695B00C762B9 /* MultipeerGameTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MultipeerGameTests-Info.plist"; sourceTree = "<group>"; };
-		84695FFD195E695B00C762B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		84695FFF195E695B00C762B9 /* MultipeerGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MultipeerGameTests.m; sourceTree = "<group>"; };
 		8469600A195E69F900C762B9 /* SessionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionHelper.h; sourceTree = "<group>"; };
 		8469600B195E69F900C762B9 /* SessionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionHelper.m; sourceTree = "<group>"; };
 		8469600E195E8E0B00C762B9 /* MGRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGRoomViewController.h; sourceTree = "<group>"; };
 		8469600F195E8E0B00C762B9 /* MGRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGRoomViewController.m; sourceTree = "<group>"; };
+		D47D9153195EA32B00401724 /* MGHappyShakeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGHappyShakeViewController.h; sourceTree = "<group>"; };
+		D47D9154195EA32B00401724 /* MGHappyShakeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGHappyShakeViewController.m; sourceTree = "<group>"; };
+		D47D9155195EA32B00401724 /* MGHappyShakeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MGHappyShakeViewController.xib; sourceTree = "<group>"; };
+		D47D916B195EAB8B00401724 /* dice_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_1.png; sourceTree = "<group>"; };
+		D47D916C195EAB8B00401724 /* dice_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_2.png; sourceTree = "<group>"; };
+		D47D916D195EAB8B00401724 /* dice_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_3.png; sourceTree = "<group>"; };
+		D47D916E195EAB8B00401724 /* dice_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_4.png; sourceTree = "<group>"; };
+		D47D916F195EAB8B00401724 /* dice_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_5.png; sourceTree = "<group>"; };
+		D47D9170195EAB8B00401724 /* dice_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_6.png; sourceTree = "<group>"; };
+		D47D9171195EAB8B00401724 /* dice_Action_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_Action_0.png; sourceTree = "<group>"; };
+		D47D9172195EAB8B00401724 /* dice_Action_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_Action_1.png; sourceTree = "<group>"; };
+		D47D9173195EAB8B00401724 /* dice_Action_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_Action_2.png; sourceTree = "<group>"; };
+		D47D9174195EAB8B00401724 /* dice_Action_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_Action_3.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +85,6 @@
 			isa = PBXGroup;
 			children = (
 				84695FDA195E695B00C762B9 /* MultipeerGame */,
-				84695FF9195E695B00C762B9 /* MultipeerGameTests */,
 				84695FD3195E695B00C762B9 /* Frameworks */,
 				84695FD2195E695B00C762B9 /* Products */,
 			);
@@ -95,6 +116,9 @@
 				84695FE6195E695B00C762B9 /* Main.storyboard */,
 				84695FE3195E695B00C762B9 /* MGAppDelegate.h */,
 				84695FE4195E695B00C762B9 /* MGAppDelegate.m */,
+				D47D9153195EA32B00401724 /* MGHappyShakeViewController.h */,
+				D47D9154195EA32B00401724 /* MGHappyShakeViewController.m */,
+				D47D9155195EA32B00401724 /* MGHappyShakeViewController.xib */,
 				8469600E195E8E0B00C762B9 /* MGRoomViewController.h */,
 				8469600F195E8E0B00C762B9 /* MGRoomViewController.m */,
 				84695FE9195E695B00C762B9 /* MGViewController.h */,
@@ -108,28 +132,11 @@
 		84695FDB195E695B00C762B9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				84695FDC195E695B00C762B9 /* MultipeerGame-Info.plist */,
+				D47D9158195EA82800401724 /* Images */,
 				84695FDD195E695B00C762B9 /* InfoPlist.strings */,
 				84695FE0195E695B00C762B9 /* main.m */,
+				84695FDC195E695B00C762B9 /* MultipeerGame-Info.plist */,
 				84695FE2195E695B00C762B9 /* MultipeerGame-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		84695FF9195E695B00C762B9 /* MultipeerGameTests */ = {
-			isa = PBXGroup;
-			children = (
-				84695FFF195E695B00C762B9 /* MultipeerGameTests.m */,
-				84695FFA195E695B00C762B9 /* Supporting Files */,
-			);
-			path = MultipeerGameTests;
-			sourceTree = "<group>";
-		};
-		84695FFA195E695B00C762B9 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				84695FFB195E695B00C762B9 /* MultipeerGameTests-Info.plist */,
-				84695FFC195E695B00C762B9 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -141,6 +148,23 @@
 				8469600B195E69F900C762B9 /* SessionHelper.m */,
 			);
 			path = NearbyNetwork;
+			sourceTree = "<group>";
+		};
+		D47D9158195EA82800401724 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				D47D916B195EAB8B00401724 /* dice_1.png */,
+				D47D916C195EAB8B00401724 /* dice_2.png */,
+				D47D916D195EAB8B00401724 /* dice_3.png */,
+				D47D916E195EAB8B00401724 /* dice_4.png */,
+				D47D916F195EAB8B00401724 /* dice_5.png */,
+				D47D9170195EAB8B00401724 /* dice_6.png */,
+				D47D9171195EAB8B00401724 /* dice_Action_0.png */,
+				D47D9172195EAB8B00401724 /* dice_Action_1.png */,
+				D47D9173195EAB8B00401724 /* dice_Action_2.png */,
+				D47D9174195EAB8B00401724 /* dice_Action_3.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,8 +225,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D47D917E195EAB8B00401724 /* dice_Action_3.png in Resources */,
 				84695FED195E695B00C762B9 /* Images.xcassets in Resources */,
+				D47D9176195EAB8B00401724 /* dice_2.png in Resources */,
+				D47D917C195EAB8B00401724 /* dice_Action_1.png in Resources */,
 				84695FDF195E695B00C762B9 /* InfoPlist.strings in Resources */,
+				D47D917B195EAB8B00401724 /* dice_Action_0.png in Resources */,
+				D47D917A195EAB8B00401724 /* dice_6.png in Resources */,
+				D47D9157195EA32B00401724 /* MGHappyShakeViewController.xib in Resources */,
+				D47D917D195EAB8B00401724 /* dice_Action_2.png in Resources */,
+				D47D9177195EAB8B00401724 /* dice_3.png in Resources */,
+				D47D9178195EAB8B00401724 /* dice_4.png in Resources */,
+				D47D9175195EAB8B00401724 /* dice_1.png in Resources */,
+				D47D9179195EAB8B00401724 /* dice_5.png in Resources */,
 				84695FE8195E695B00C762B9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,6 +251,7 @@
 			files = (
 				84695FE5195E695B00C762B9 /* MGAppDelegate.m in Sources */,
 				84695FEB195E695B00C762B9 /* MGViewController.m in Sources */,
+				D47D9156195EA32B00401724 /* MGHappyShakeViewController.m in Sources */,
 				84696010195E8E0B00C762B9 /* MGRoomViewController.m in Sources */,
 				8469600C195E69F900C762B9 /* SessionHelper.m in Sources */,
 				84695FE1195E695B00C762B9 /* main.m in Sources */,
@@ -239,14 +275,6 @@
 				84695FE7195E695B00C762B9 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		84695FFC195E695B00C762B9 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				84695FFD195E695B00C762B9 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
