@@ -61,32 +61,32 @@
     return NO;
 }
 
-//- (void)startPlay
-//{
-//    if (_nameText.text.length == 0)
-//    {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"请输入用户名" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        [alert show];
-//        return;
-//    }
-//    MGRoomViewController *roomVC = [[MGRoomViewController alloc] initWithName:_nameText.text];
-//    UINavigationController *naviVC = [[UINavigationController alloc] initWithRootViewController:roomVC];
-//    [self presentViewController:naviVC animated:YES completion:nil];
-//
-//    /*MGPeersViewController *roomVC = [[MGPeersViewController alloc] initWithNibName:nil bundle:nil];
-//    [self.navigationController pushViewController:roomVC animated:YES];*/
-//    
-//    /*MGHappyShakeViewController *roomVC = [[MGHappyShakeViewController alloc] initWithNibName:@"MGHappyShakeViewController" bundle:nil];
-//    [self.navigationController pushViewController:roomVC animated:YES];*/
-////    MGHappyShakeViewController *roomVC = [[MGHappyShakeViewController alloc] initWithNibName:@"MGHappyShakeViewController" bundle:nil];
-////    [self.navigationController pushViewController:roomVC animated:YES];
-//
-//}
-
 - (void)startPlay
 {
-    MGHappyShakeViewController *roomVC = [[MGHappyShakeViewController alloc] initWithNibName:@"MGHappyShakeViewController" bundle:nil];
-    [self.navigationController pushViewController:roomVC animated:YES];
+    if (_nameText.text.length == 0)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"请输入用户名" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        return;
+    }
+    MGRoomViewController *roomVC = [[MGRoomViewController alloc] initWithName:_nameText.text];
+    UINavigationController *naviVC = [[UINavigationController alloc] initWithRootViewController:roomVC];
+    [self presentViewController:naviVC animated:YES completion:nil];
+
+    /*MGPeersViewController *roomVC = [[MGPeersViewController alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:roomVC animated:YES];*/
+    
+    /*MGHappyShakeViewController *roomVC = [[MGHappyShakeViewController alloc] initWithNibName:@"MGHappyShakeViewController" bundle:nil];
+    [self.navigationController pushViewController:roomVC animated:YES];*/
+//    MGHappyShakeViewController *roomVC = [[MGHappyShakeViewController alloc] initWithNibName:@"MGHappyShakeViewController" bundle:nil];
+//    [self.navigationController pushViewController:roomVC animated:YES];
+
 }
+
+//- (void)startPlay
+//{
+//    MGHappyShakeViewController *roomVC = [[MGHappyShakeViewController alloc] initWithNibName:@"MGHappyShakeViewController" bundle:nil];
+//    [self.navigationController pushViewController:roomVC animated:YES];
+//}
 
 @end
