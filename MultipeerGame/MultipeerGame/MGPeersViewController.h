@@ -8,5 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+// 用户头像
+@interface MGUserCharactor : NSObject
+@property (nonatomic, retain) UIImageView *charatorIcon;
+@property (nonatomic, assign) CGPoint iconCurrentPosition;
+@property (nonatomic, assign) CGPoint iconMovetoPosition;
+@end
+
 @interface MGPeersViewController : UIViewController
 @end
+

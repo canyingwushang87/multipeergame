@@ -7,12 +7,20 @@
 //
 
 #import "MGPeersViewController.h"
+#import "MGCommonUtility.h"
+
+@interface MGUserCharactor ()
+@end
 
 @interface MGPeersViewController ()
 
-@property (nonatomic, retain) UIImageView *backgroundImageView;
 @property (nonatomic, retain) UIButton *clickToStartButton;
-@property (nonatomic, retain) NSArray *userCharactorArray;
+@property (nonatomic, retain) NSMutableArray *userCharactorArray;
+
+@end
+
+@implementation MGUserCharactor
+
 
 @end
 
@@ -23,58 +31,87 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"Room";
-    UIButton *backbtn = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 50.0f, 20.0f)];
+    self.title = @"Friends";
+    self.userCharactorArray = [NSMutableArray array];
+    
+    
+    [self addNewUser:@"111"];
+    [self addNewUser:@"222"];
+    [self addNewUser:@"333"];
+    [self addNewUser:@"444"];
+    [self addNewUser:@"555"];
+    [self addNewUser:@"555"];
+    [self addNewUser:@"555"];
+    [self addNewUser:@"555"];
+    
+    
+    /*UIButton *backbtn = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 50.0f, 20.0f)];
     [backbtn setTitle:@"Back" forState:UIControlStateNormal];
     [backbtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [backbtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithCustomView:backbtn];
-    self.navigationItem.leftBarButtonItem = back;
+    self.navigationItem.leftBarButtonItem = back;*/
     
-    self.joinNameText = [[UITextField alloc] initWithFrame:CGRectMake(50.0f, 100.0f, 220.0f, 30.0f)];
-    [self.view addSubview:_joinNameText];
-    _joinNameText.borderStyle = UITextBorderStyleRoundedRect;
-    _joinNameText.delegate = self;
-    
-    UIButton *join = [UIButton buttonWithType:UIButtonTypeSystem];
-    [self.view addSubview:join];
-    join.frame = CGRectOffset(_joinNameText.frame, 0.0f, 50.0f);
-    join.backgroundColor = [UIColor blackColor];
-    join.titleLabel.textColor = [UIColor whiteColor];
-    [join setTitle:@"Join" forState:UIControlStateNormal];
-    [join addTarget:self action:@selector(Join) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.createNameText = [[UITextField alloc] initWithFrame:CGRectOffset(_joinNameText.frame, 0.0f, 100.0f)];
-    [self.view addSubview:_createNameText];
-    _createNameText.borderStyle = UITextBorderStyleRoundedRect;
-    _createNameText.delegate = self;
-    
-    UIButton *create = [UIButton buttonWithType:UIButtonTypeSystem];
-    [self.view addSubview:create];
-    create.frame = CGRectOffset(_joinNameText.frame, 0.0f, 150.0f);
-    create.backgroundColor = [UIColor blackColor];
-    create.titleLabel.textColor = [UIColor whiteColor];
-    [create setTitle:@"Create" forState:UIControlStateNormal];
-    [create addTarget:self action:@selector(create) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)back
+- (void)addNewUser:(NSString *)userName
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    return NO;
-}
-
-- (void)Join
-{
+    CGPoint offset = CGPointMake([UIScreen mainScreen].bounds.size.width/2.0f, [UIScreen mainScreen].bounds.size.height/2.0f);
     
+    NSMutableArray * pointsArray = [NSMutableArray array];
+    
+    // 添加新对象
+    MGUserCharactor * newUser = [[MGUserCharactor alloc] init];
+    newUser.charatorIcon = [[UIImageView alloc] initWithImage:[MGCommonUtility getImageByHashString:userName]];
+    newUser.charatorIcon.frame = CGRectMake(0.0f, 0.0f, 60.0f, 60.0f);
+    switch ([self.userCharactorArray count]) {
+        case 0:
+            {
+                newUser.iconCurrentPosition = CGPointMake(0.0f + offset.x, 0.0f + offset.y);
+                newUser.iconMovetoPosition = CGPointMake(0.0f + offset.x, 0.0f + offset.y);
+                
+                [pointsArray addObject:[NSValue valueWithCGPoint:newUser.iconCurrentPosition]];
+            }
+            break;
+        case 1:
+            {
+                newUser.iconCurrentPosition = CGPointMake(100.0f + offset.x, 0.0f + offset.y);
+                newUser.iconMovetoPosition = CGPointMake(100.0f + offset.x, 0.0f + offset.y);
+                
+                [pointsArray addObject:[NSValue valueWithCGPoint:CGPointMake(-100.0f + offset.x, 0.0f + offset.y)]];
+                [pointsArray addObject:[NSValue valueWithCGPoint:newUser.iconCurrentPosition]];
+            }
+            break;
+        default:
+            {
+                pointsArray = [MGCommonUtility getPolyPointsBySizesCount:[self.userCharactorArray count]+1 radius:120.0f startAngle:0.0f offset:offset];
+                newUser.iconCurrentPosition = [[pointsArray objectAtIndex:[self.userCharactorArray count]] CGPointValue];
+                newUser.iconMovetoPosition = newUser.iconCurrentPosition;
+            }
+            break;
+    }
+    [self.userCharactorArray addObject:newUser];
+    newUser.charatorIcon.center = newUser.iconCurrentPosition;
+    
+    // 更新已有对象座标
+    for (NSUInteger i = 0; i < ([self.userCharactorArray count] - 1) ; i++) {
+        MGUserCharactor * user = [self.userCharactorArray objectAtIndex:i];
+        
+        user.iconMovetoPosition = [[pointsArray objectAtIndex:i] CGPointValue];
+        
+        [UIView animateWithDuration:1.0f animations:^{
+            user.charatorIcon.center = user.iconMovetoPosition;
+        }
+        completion:^(BOOL finished)
+        {
+            user.iconCurrentPosition = user.iconMovetoPosition;//此处应该动画
+        }];
+    }
+    
+    [self.view addSubview:newUser.charatorIcon];
 }
 
-- (void)create
+- (void)deleteUser:(NSString *)userName
 {
     
 }
