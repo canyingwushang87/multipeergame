@@ -7,6 +7,7 @@
 //
 
 #import "MGHappyShakeViewController.h"
+#import "MGFriendsExpandViewController.h"
 
 @interface MGHappyShakeViewController ()
 
@@ -16,6 +17,8 @@
 @property (nonatomic, retain) UIImageView *action1;
 @property (nonatomic, retain) UIImageView *action2;
 @property (nonatomic, retain) UIImageView *action3;
+
+@property (nonatomic, strong) MGFriendsExpandViewController *friendsVC;
 
 @end
 
@@ -28,6 +31,12 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)loadView
+{
+    [super loadView];
+    self.navigationController.navigationBar.hidden = YES;
 }
 
 - (void)viewDidLoad
@@ -52,6 +61,8 @@
     [_backgroundView addSubview:_image3];
     
     // Do any additional setup after loading the view from its nib.
+    _friendsVC = [[MGFriendsExpandViewController alloc] init];
+    [self.view addSubview:_friendsVC.view];
 }
 
 - (void)didReceiveMemoryWarning
