@@ -42,7 +42,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"Friends";
+    self.title = [NSString stringWithFormat:@"Friends-%@", _sessionHelper.serviceType];
     self.userCharactorArray = [NSMutableArray array];
 
 //    [self addNewUser:@"111"];
@@ -236,6 +236,12 @@
 #pragma mark - events
 - (void)startPlay
 {
+    if (self.userCharactorArray.count < 2)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"嘿" message:@"你的小伙伴们呢？" delegate:nil cancelButtonTitle:@"去找他们" otherButtonTitles: nil];
+        [alert show];
+        return;
+    }
     NSData *startData = [NSJSONSerialization dataWithJSONObject:@{@"startplay": @"start"} options:0 error:nil];
     [self.sessionHelper sendDataToAll:startData];
     
