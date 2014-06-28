@@ -15,7 +15,8 @@
 @protocol SessionHelperDelegate <NSObject>
 
 @required
-- (void)sessionHelperDidChangeConnectedPeers:(SessionHelper *)sessionHelper;
+- (void)sessionHelperDidAddPeers:(SessionHelper *)sessionHelper addedPeer:(MCPeerID *)peerID;
+- (void)sessionHelperDidRemovePeers:(SessionHelper *)sessionHelper removedPeer:(MCPeerID *)peerID;
 - (void)sessionHelperDidRecieveData:(NSData *)data peer:(MCPeerID *)peerID;
 
 @end
