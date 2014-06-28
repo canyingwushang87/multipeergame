@@ -7,12 +7,14 @@
 //
 
 #import "MGRoomViewController.h"
+#import "SessionHelper.h"
 
 @interface MGRoomViewController ()
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) UITextField *joinNameText;
 @property (nonatomic, retain) UITextField *createNameText;
+@property (nonatomic, retain) SessionHelper *sessionHelper;
 
 @end
 
@@ -65,7 +67,7 @@
     create.backgroundColor = [UIColor blackColor];
     create.titleLabel.textColor = [UIColor whiteColor];
     [create setTitle:@"Create" forState:UIControlStateNormal];
-    [create addTarget:self action:@selector(create) forControlEvents:UIControlEventTouchUpInside];
+    [create addTarget:self action:@selector(Create) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)back
@@ -81,12 +83,37 @@
 
 - (void)Join
 {
+    self.sessionHelper = [[SessionHelper alloc] initWithJoinRoom:_joinNameText.text WithPlayerName:_name];
+    MCBrowserViewController *viewController = [[MCBrowserViewController alloc] initWithServiceType:self.sessionHelper.serviceType
+                                                                                           session:self.sessionHelper.session];
+    viewController.delegate = self;
     
+    [self presentViewController:viewController animated:YES completion:nil];
 }
 
-- (void)create
+- (void)Create
 {
-    
+    self.sessionHelper = [[SessionHelper alloc] initWithCreateRoom:_createNameText.text WithPlayerName:_name];
+
+}
+
+#pragma mark - MCBrowserViewControllerDelegate methods
+
+- (BOOL)browserViewController:(MCBrowserViewController *)browserViewController
+      shouldPresentNearbyPeer:(MCPeerID *)peerID
+            withDiscoveryInfo:(NSDictionary *)info
+{
+    return YES;
+}
+
+- (void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController
+{
+    [browserViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController
+{
+    [browserViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

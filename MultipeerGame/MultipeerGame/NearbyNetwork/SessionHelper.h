@@ -15,13 +15,15 @@
 @protocol SessionHelperDelegate <NSObject>
 
 @required
-- (void)sessionHelperDidChangeConnectedPeers:(SessionHelper *)sessionHelper;
+- (void)sessionHelperDidAddPeers:(SessionHelper *)sessionHelper addedPeer:(MCPeerID *)peerID;
+- (void)sessionHelperDidRemovePeers:(SessionHelper *)sessionHelper removedPeer:(MCPeerID *)peerID;
 - (void)sessionHelperDidRecieveData:(NSData *)data peer:(MCPeerID *)peerID;
 
 @end
 
 @interface SessionHelper : NSObject
 
+@property (nonatomic) NSMutableArray *connectedPeerIDs;
 @property (nonatomic, readonly) MCSession *session;
 @property (nonatomic, retain) NSString *serviceType;
 @property (nonatomic, readonly) NSUInteger connectedPeersCount;
