@@ -24,6 +24,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    self.title = @"微趴";
     self.view.backgroundColor = [UIColor whiteColor];
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 120.0f, 320.0f, 50.0f)];
     label.textAlignment = NSTextAlignmentCenter;
