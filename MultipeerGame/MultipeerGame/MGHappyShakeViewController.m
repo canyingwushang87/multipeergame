@@ -55,9 +55,26 @@
 - (void)loadView
 {
     [super loadView];
-    self.navigationController.navigationBar.hidden = YES;
+    [self addNaviRightItem];
 }
 
+- (void)addNaviRightItem
+{
+    UIButton *rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+//    rightBtn.backgroundColor = [UIColor blackColor];
+    [rightBtn setTitle:@"好友" forState:UIControlStateNormal];
+    [rightBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+
+    [rightBtn addTarget:self action:@selector(rightAction) forControlEvents:UIControlEventTouchUpInside];
+    rightBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+//    UIBarButtonItem *tempItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home.png"] style:UIBarButtonItemStylePlain target:nil action:@selector(rightAction)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
+}
+
+- (void)rightAction
+{
+    [_friendsVC showFriendsList];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
