@@ -70,8 +70,8 @@
         return;
     }
     MGRoomViewController *roomVC = [[MGRoomViewController alloc] initWithName:_nameText.text];
-    UINavigationController *naviVC = [[UINavigationController alloc] initWithRootViewController:roomVC];
-    [self presentViewController:naviVC animated:YES completion:nil];
+//    UINavigationController *naviVC = [[UINavigationController alloc] initWithRootViewController:roomVC];
+//    [self presentViewController:naviVC animated:YES completion:nil];
 
     /*MGPeersViewController *roomVC = [[MGPeersViewController alloc] initWithNibName:nil bundle:nil];
     [self.navigationController pushViewController:roomVC animated:YES];*/
@@ -79,7 +79,7 @@
     /*MGHappyShakeViewController *roomVC = [[MGHappyShakeViewController alloc] initWithNibName:@"MGHappyShakeViewController" bundle:nil];
     [self.navigationController pushViewController:roomVC animated:YES];*/
 //    MGHappyShakeViewController *roomVC = [[MGHappyShakeViewController alloc] initWithNibName:@"MGHappyShakeViewController" bundle:nil];
-//    [self.navigationController pushViewController:roomVC animated:YES];
+    [self.navigationController pushViewController:roomVC animated:YES];
 
 }
 
