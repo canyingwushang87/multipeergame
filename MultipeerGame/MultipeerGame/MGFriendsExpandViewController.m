@@ -306,7 +306,7 @@
 -(void)sendMessage
 {
  
-    [self showMessage:_selectedPeerID.displayName message:_inputTextField.text];
+//    [self showMessage:_selectedPeerID.displayName message:_inputTextField.text];
     
     NSMutableDictionary *contentDict = [[NSMutableDictionary alloc] init];
     [contentDict setValue:_selectedPeerID.displayName forKey:@"name"];
