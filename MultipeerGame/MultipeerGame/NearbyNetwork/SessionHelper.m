@@ -12,7 +12,6 @@
 
 @property (nonatomic) MCNearbyServiceAdvertiser *advertiserAssistant;
 @property (nonatomic) MCNearbyServiceBrowser *nearbySBrowser;
-@property (nonatomic) MCPeerID *myPeerID;
 
 @end
 
@@ -32,7 +31,7 @@
     self = [super init];
     if (self) {
         _myPeerID = [[MCPeerID alloc] initWithDisplayName:playerName];
-        self.connectedPeerIDs = [NSMutableArray arrayWithObject:_myPeerID];
+        self.connectedPeerIDs = [NSMutableArray array];
         _session = [[MCSession alloc] initWithPeer:_myPeerID];
         _session.delegate = self;
         self.serviceType = roomName;

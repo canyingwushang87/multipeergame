@@ -68,6 +68,7 @@
 {
     _sessionHelper.delegate = self;
     
+    [self addNewUser:_sessionHelper.myPeerID.displayName];
     for (MCPeerID *item in _sessionHelper.connectedPeerIDs)
     {
         [self addNewUser:item.displayName];

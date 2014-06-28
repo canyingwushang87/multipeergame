@@ -27,6 +27,7 @@
 @property (nonatomic, readonly) MCSession *session;
 @property (nonatomic, retain) NSString *serviceType;
 @property (nonatomic, readonly) NSUInteger connectedPeersCount;
+@property (nonatomic) MCPeerID *myPeerID;
 @property (nonatomic, weak) id <SessionHelperDelegate> delegate;
 
 - (instancetype)initWithCreateRoom:(NSString *)roomName WithPlayerName:(NSString *)playerName;
