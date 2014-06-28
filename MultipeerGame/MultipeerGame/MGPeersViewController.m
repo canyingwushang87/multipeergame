@@ -16,6 +16,7 @@
 
 @property (nonatomic, retain) UIButton *clickToStartButton;
 @property (nonatomic, retain) NSMutableArray *userCharactorArray;
+@property (nonatomic) SessionHelper *sessionHelper;
 
 @end
 
@@ -26,6 +27,16 @@
 
 @implementation MGPeersViewController
 
+- (id)initWithSession:(SessionHelper *)sessionHelper
+{
+    self = [super init];
+    if (self)
+    {
+        self.sessionHelper = sessionHelper;
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -35,14 +46,14 @@
     self.userCharactorArray = [NSMutableArray array];
     
     
-    [self addNewUser:@"111"];
-    [self addNewUser:@"222"];
-    [self addNewUser:@"333"];
-    [self addNewUser:@"444"];
-    [self addNewUser:@"555"];
-    [self addNewUser:@"555"];
-    [self addNewUser:@"555"];
-    [self addNewUser:@"555"];
+//    [self addNewUser:@"111"];
+//    [self addNewUser:@"222"];
+//    [self addNewUser:@"333"];
+//    [self addNewUser:@"444"];
+//    [self addNewUser:@"555"];
+//    [self addNewUser:@"555"];
+//    [self addNewUser:@"555"];
+//    [self addNewUser:@"555"];
     
     
     /*UIButton *backbtn = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 50.0f, 20.0f)];
@@ -52,6 +63,16 @@
     UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithCustomView:backbtn];
     self.navigationItem.leftBarButtonItem = back;*/
     
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    _sessionHelper.delegate = self;
+    
+    for (MCPeerID *item in _sessionHelper.connectedPeerIDs)
+    {
+        [self addNewUser:item.displayName];
+    }
 }
 
 - (void)addNewUser:(NSString *)userName
@@ -112,6 +133,20 @@
 }
 
 - (void)deleteUser:(NSString *)userName
+{
+    
+}
+
+- (void)sessionHelperDidAddPeers:(SessionHelper *)sessionHelper addedPeer:(MCPeerID *)peerID
+{
+    [self addNewUser:peerID.displayName];
+}
+
+- (void)sessionHelperDidRemovePeers:(SessionHelper *)sessionHelper removedPeer:(MCPeerID *)peerID
+{
+    
+}
+- (void)sessionHelperDidRecieveData:(NSData *)data peer:(MCPeerID *)peerID
 {
     
 }

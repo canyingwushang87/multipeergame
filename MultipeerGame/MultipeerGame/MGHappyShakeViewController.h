@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SessionHelper.h"
 
 @interface MGHappyShakeViewController : UIViewController
 
 @property (nonatomic, assign) IBOutlet UIView *backgroundView;
 @property (nonatomic, assign) IBOutlet UIButton *startButton;
+
+@property (nonatomic, strong) SessionHelper *sessionHelper;
 
 @end

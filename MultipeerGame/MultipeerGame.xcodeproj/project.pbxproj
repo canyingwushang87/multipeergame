@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4C14DC7A195EB6A10012C0AD /* MGFriendsExpandView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C14DC77195EB6A10012C0AD /* MGFriendsExpandView.m */; };
 		4C14DC7B195EB6A10012C0AD /* MGFriendsExpandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C14DC79195EB6A10012C0AD /* MGFriendsExpandViewController.m */; };
+		4C14DC7D195EE1440012C0AD /* friends.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C14DC7C195EE1440012C0AD /* friends.png */; };
+		4C14DC7F195EE5DC0012C0AD /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C14DC7E195EE5DC0012C0AD /* home.png */; };
 		84695FD5195E695B00C762B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84695FD4195E695B00C762B9 /* Foundation.framework */; };
 		84695FD7195E695B00C762B9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84695FD6195E695B00C762B9 /* CoreGraphics.framework */; };
 		84695FD9195E695B00C762B9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84695FD8195E695B00C762B9 /* UIKit.framework */; };
@@ -32,16 +34,18 @@
 		D47D917C195EAB8B00401724 /* dice_Action_1.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D9172195EAB8B00401724 /* dice_Action_1.png */; };
 		D47D917D195EAB8B00401724 /* dice_Action_2.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D9173195EAB8B00401724 /* dice_Action_2.png */; };
 		D47D917E195EAB8B00401724 /* dice_Action_3.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D9174195EAB8B00401724 /* dice_Action_3.png */; };
-		E9FA83C6195EB77400F45DC3 /* icon8.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FA83BE195EB77400F45DC3 /* icon8.png */; };
-		E9FA83C7195EB77400F45DC3 /* icon7.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FA83BF195EB77400F45DC3 /* icon7.png */; };
-		E9FA83C8195EB77400F45DC3 /* icon5.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FA83C0195EB77400F45DC3 /* icon5.png */; };
-		E9FA83C9195EB77400F45DC3 /* icon4.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FA83C1195EB77400F45DC3 /* icon4.png */; };
-		E9FA83CA195EB77400F45DC3 /* icon6.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FA83C2195EB77400F45DC3 /* icon6.png */; };
-		E9FA83CB195EB77400F45DC3 /* icon3.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FA83C3195EB77400F45DC3 /* icon3.png */; };
-		E9FA83CC195EB77400F45DC3 /* icon1.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FA83C4195EB77400F45DC3 /* icon1.png */; };
-		E9FA83CD195EB77400F45DC3 /* icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FA83C5195EB77400F45DC3 /* icon2.png */; };
-		E9FA83D0195EB8D600F45DC3 /* MGCommonUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FA83CF195EB8D600F45DC3 /* MGCommonUtility.m */; };
-		E9FA83D3195EBBE700F45DC3 /* MGPeersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9FA83D2195EBBE700F45DC3 /* MGPeersViewController.m */; };
+		D47D9181195EE0BD00401724 /* SFCountdownView.m in Sources */ = {isa = PBXBuildFile; fileRef = D47D9180195EE0BD00401724 /* SFCountdownView.m */; };
+		D47D918B195EECC200401724 /* homebtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D9182195EECC200401724 /* homebtn@2x.png */; };
+		D47D918C195EECC200401724 /* icon1.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D9183195EECC200401724 /* icon1.png */; };
+		D47D918D195EECC200401724 /* icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D9184195EECC200401724 /* icon2.png */; };
+		D47D918E195EECC200401724 /* icon3.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D9185195EECC200401724 /* icon3.png */; };
+		D47D918F195EECC200401724 /* icon4.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D9186195EECC200401724 /* icon4.png */; };
+		D47D9190195EECC200401724 /* icon5.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D9187195EECC200401724 /* icon5.png */; };
+		D47D9191195EECC200401724 /* icon6.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D9188195EECC200401724 /* icon6.png */; };
+		D47D9192195EECC200401724 /* icon7.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D9189195EECC200401724 /* icon7.png */; };
+		D47D9193195EECC200401724 /* icon8.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D918A195EECC200401724 /* icon8.png */; };
+		D47D9198195EECD000401724 /* MGCommonUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = D47D9195195EECD000401724 /* MGCommonUtility.m */; };
+		D47D9199195EECD000401724 /* MGPeersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D47D9197195EECD000401724 /* MGPeersViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +53,8 @@
 		4C14DC77195EB6A10012C0AD /* MGFriendsExpandView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGFriendsExpandView.m; sourceTree = "<group>"; };
 		4C14DC78195EB6A10012C0AD /* MGFriendsExpandViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGFriendsExpandViewController.h; sourceTree = "<group>"; };
 		4C14DC79195EB6A10012C0AD /* MGFriendsExpandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGFriendsExpandViewController.m; sourceTree = "<group>"; };
+		4C14DC7C195EE1440012C0AD /* friends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friends.png; sourceTree = "<group>"; };
+		4C14DC7E195EE5DC0012C0AD /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		84695FD1195E695B00C762B9 /* MultipeerGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultipeerGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84695FD4195E695B00C762B9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		84695FD6195E695B00C762B9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -81,18 +87,21 @@
 		D47D9172195EAB8B00401724 /* dice_Action_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_Action_1.png; sourceTree = "<group>"; };
 		D47D9173195EAB8B00401724 /* dice_Action_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_Action_2.png; sourceTree = "<group>"; };
 		D47D9174195EAB8B00401724 /* dice_Action_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dice_Action_3.png; sourceTree = "<group>"; };
-		E9FA83BE195EB77400F45DC3 /* icon8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon8.png; sourceTree = "<group>"; };
-		E9FA83BF195EB77400F45DC3 /* icon7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon7.png; sourceTree = "<group>"; };
-		E9FA83C0195EB77400F45DC3 /* icon5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon5.png; sourceTree = "<group>"; };
-		E9FA83C1195EB77400F45DC3 /* icon4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon4.png; sourceTree = "<group>"; };
-		E9FA83C2195EB77400F45DC3 /* icon6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon6.png; sourceTree = "<group>"; };
-		E9FA83C3195EB77400F45DC3 /* icon3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon3.png; sourceTree = "<group>"; };
-		E9FA83C4195EB77400F45DC3 /* icon1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon1.png; sourceTree = "<group>"; };
-		E9FA83C5195EB77400F45DC3 /* icon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon2.png; sourceTree = "<group>"; };
-		E9FA83CE195EB8D600F45DC3 /* MGCommonUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGCommonUtility.h; sourceTree = "<group>"; };
-		E9FA83CF195EB8D600F45DC3 /* MGCommonUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGCommonUtility.m; sourceTree = "<group>"; };
-		E9FA83D1195EBBE700F45DC3 /* MGPeersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGPeersViewController.h; sourceTree = "<group>"; };
-		E9FA83D2195EBBE700F45DC3 /* MGPeersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGPeersViewController.m; sourceTree = "<group>"; };
+		D47D917F195EE0BD00401724 /* SFCountdownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFCountdownView.h; sourceTree = "<group>"; };
+		D47D9180195EE0BD00401724 /* SFCountdownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFCountdownView.m; sourceTree = "<group>"; };
+		D47D9182195EECC200401724 /* homebtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homebtn@2x.png"; sourceTree = "<group>"; };
+		D47D9183195EECC200401724 /* icon1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon1.png; sourceTree = "<group>"; };
+		D47D9184195EECC200401724 /* icon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon2.png; sourceTree = "<group>"; };
+		D47D9185195EECC200401724 /* icon3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon3.png; sourceTree = "<group>"; };
+		D47D9186195EECC200401724 /* icon4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon4.png; sourceTree = "<group>"; };
+		D47D9187195EECC200401724 /* icon5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon5.png; sourceTree = "<group>"; };
+		D47D9188195EECC200401724 /* icon6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon6.png; sourceTree = "<group>"; };
+		D47D9189195EECC200401724 /* icon7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon7.png; sourceTree = "<group>"; };
+		D47D918A195EECC200401724 /* icon8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon8.png; sourceTree = "<group>"; };
+		D47D9194195EECD000401724 /* MGCommonUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGCommonUtility.h; sourceTree = "<group>"; };
+		D47D9195195EECD000401724 /* MGCommonUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGCommonUtility.m; sourceTree = "<group>"; };
+		D47D9196195EECD000401724 /* MGPeersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGPeersViewController.h; sourceTree = "<group>"; };
+		D47D9197195EECD000401724 /* MGPeersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGPeersViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +149,12 @@
 		84695FDA195E695B00C762B9 /* MultipeerGame */ = {
 			isa = PBXGroup;
 			children = (
+				D47D9194195EECD000401724 /* MGCommonUtility.h */,
+				D47D9195195EECD000401724 /* MGCommonUtility.m */,
+				D47D9196195EECD000401724 /* MGPeersViewController.h */,
+				D47D9197195EECD000401724 /* MGPeersViewController.m */,
+				D47D917F195EE0BD00401724 /* SFCountdownView.h */,
+				D47D9180195EE0BD00401724 /* SFCountdownView.m */,
 				4C14DC76195EB6A10012C0AD /* MGFriendsExpandView.h */,
 				4C14DC77195EB6A10012C0AD /* MGFriendsExpandView.m */,
 				4C14DC78195EB6A10012C0AD /* MGFriendsExpandViewController.h */,
@@ -148,15 +163,9 @@
 				84695FE6195E695B00C762B9 /* Main.storyboard */,
 				84695FE3195E695B00C762B9 /* MGAppDelegate.h */,
 				84695FE4195E695B00C762B9 /* MGAppDelegate.m */,
-
-				E9FA83CE195EB8D600F45DC3 /* MGCommonUtility.h */,
-				E9FA83CF195EB8D600F45DC3 /* MGCommonUtility.m */,
 				D47D9153195EA32B00401724 /* MGHappyShakeViewController.h */,
 				D47D9154195EA32B00401724 /* MGHappyShakeViewController.m */,
 				D47D9155195EA32B00401724 /* MGHappyShakeViewController.xib */,
-				E9FA83D1195EBBE700F45DC3 /* MGPeersViewController.h */,
-				E9FA83D2195EBBE700F45DC3 /* MGPeersViewController.m */,
-
 				8469600E195E8E0B00C762B9 /* MGRoomViewController.h */,
 				8469600F195E8E0B00C762B9 /* MGRoomViewController.m */,
 				84695FE9195E695B00C762B9 /* MGViewController.h */,
@@ -191,14 +200,17 @@
 		D47D9158195EA82800401724 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				E9FA83BE195EB77400F45DC3 /* icon8.png */,
-				E9FA83BF195EB77400F45DC3 /* icon7.png */,
-				E9FA83C0195EB77400F45DC3 /* icon5.png */,
-				E9FA83C1195EB77400F45DC3 /* icon4.png */,
-				E9FA83C2195EB77400F45DC3 /* icon6.png */,
-				E9FA83C3195EB77400F45DC3 /* icon3.png */,
-				E9FA83C4195EB77400F45DC3 /* icon1.png */,
-				E9FA83C5195EB77400F45DC3 /* icon2.png */,
+				4C14DC7E195EE5DC0012C0AD /* home.png */,
+				4C14DC7C195EE1440012C0AD /* friends.png */,
+				D47D9182195EECC200401724 /* homebtn@2x.png */,
+				D47D9183195EECC200401724 /* icon1.png */,
+				D47D9184195EECC200401724 /* icon2.png */,
+				D47D9185195EECC200401724 /* icon3.png */,
+				D47D9186195EECC200401724 /* icon4.png */,
+				D47D9187195EECC200401724 /* icon5.png */,
+				D47D9188195EECC200401724 /* icon6.png */,
+				D47D9189195EECC200401724 /* icon7.png */,
+				D47D918A195EECC200401724 /* icon8.png */,
 				D47D916B195EAB8B00401724 /* dice_1.png */,
 				D47D916C195EAB8B00401724 /* dice_2.png */,
 				D47D916D195EAB8B00401724 /* dice_3.png */,
@@ -272,29 +284,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				D47D917E195EAB8B00401724 /* dice_Action_3.png in Resources */,
+				D47D918D195EECC200401724 /* icon2.png in Resources */,
+				D47D9192195EECC200401724 /* icon7.png in Resources */,
 				84695FED195E695B00C762B9 /* Images.xcassets in Resources */,
 				D47D9176195EAB8B00401724 /* dice_2.png in Resources */,
 				D47D917C195EAB8B00401724 /* dice_Action_1.png in Resources */,
-
-				E9FA83CB195EB77400F45DC3 /* icon3.png in Resources */,
+				4C14DC7F195EE5DC0012C0AD /* home.png in Resources */,
 				84695FDF195E695B00C762B9 /* InfoPlist.strings in Resources */,
 				D47D917B195EAB8B00401724 /* dice_Action_0.png in Resources */,
-				E9FA83CD195EB77400F45DC3 /* icon2.png in Resources */,
+				D47D918C195EECC200401724 /* icon1.png in Resources */,
+				D47D918E195EECC200401724 /* icon3.png in Resources */,
 				D47D917A195EAB8B00401724 /* dice_6.png in Resources */,
-				E9FA83CC195EB77400F45DC3 /* icon1.png in Resources */,
+				4C14DC7D195EE1440012C0AD /* friends.png in Resources */,
+				D47D9190195EECC200401724 /* icon5.png in Resources */,
 				D47D9157195EA32B00401724 /* MGHappyShakeViewController.xib in Resources */,
 				D47D917D195EAB8B00401724 /* dice_Action_2.png in Resources */,
-				E9FA83C8195EB77400F45DC3 /* icon5.png in Resources */,
 				D47D9177195EAB8B00401724 /* dice_3.png in Resources */,
+				D47D9191195EECC200401724 /* icon6.png in Resources */,
+				D47D918F195EECC200401724 /* icon4.png in Resources */,
 				D47D9178195EAB8B00401724 /* dice_4.png in Resources */,
 				D47D9175195EAB8B00401724 /* dice_1.png in Resources */,
-				E9FA83CA195EB77400F45DC3 /* icon6.png in Resources */,
-				E9FA83C7195EB77400F45DC3 /* icon7.png in Resources */,
-
+				D47D9193195EECC200401724 /* icon8.png in Resources */,
 				D47D9179195EAB8B00401724 /* dice_5.png in Resources */,
 				84695FE8195E695B00C762B9 /* Main.storyboard in Resources */,
-				E9FA83C6195EB77400F45DC3 /* icon8.png in Resources */,
-				E9FA83C9195EB77400F45DC3 /* icon4.png in Resources */,
+				D47D918B195EECC200401724 /* homebtn@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,17 +318,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-
-				E9FA83D0195EB8D600F45DC3 /* MGCommonUtility.m in Sources */,
+				4C14DC7B195EB6A10012C0AD /* MGFriendsExpandViewController.m in Sources */,
 				84695FE5195E695B00C762B9 /* MGAppDelegate.m in Sources */,
+				D47D9199195EECD000401724 /* MGPeersViewController.m in Sources */,
 				84695FEB195E695B00C762B9 /* MGViewController.m in Sources */,
 				D47D9156195EA32B00401724 /* MGHappyShakeViewController.m in Sources */,
-				E9FA83D3195EBBE700F45DC3 /* MGPeersViewController.m in Sources */,
-				4C14DC7B195EB6A10012C0AD /* MGFriendsExpandViewController.m in Sources */,
 				4C14DC7A195EB6A10012C0AD /* MGFriendsExpandView.m in Sources */,
 				84696010195E8E0B00C762B9 /* MGRoomViewController.m in Sources */,
 				8469600C195E69F900C762B9 /* SessionHelper.m in Sources */,
 				84695FE1195E695B00C762B9 /* main.m in Sources */,
+				D47D9181195EE0BD00401724 /* SFCountdownView.m in Sources */,
+				D47D9198195EECD000401724 /* MGCommonUtility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
