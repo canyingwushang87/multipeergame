@@ -7,6 +7,7 @@
 //
 
 #import "MGHappyShakeViewController.h"
+
 #import <QuartzCore/QuartzCore.h>
 #import <AudioToolbox/AudioToolbox.h>
 
@@ -27,6 +28,7 @@
 @property (nonatomic, retain) UIImageView *action1;
 @property (nonatomic, retain) UIImageView *action2;
 @property (nonatomic, retain) UIImageView *action3;
+
 
 
 @property (nonatomic, strong) MGFriendsExpandViewController *friendsVC;
@@ -54,6 +56,7 @@
 {
     [super viewDidLoad];
     
+
     _backgroundView.frame = CGRectMake(_backgroundView.frame.origin.x, _backgroundView.frame.origin.y + 60, _backgroundView.frame.size.width, _backgroundView.frame.size.height);
     
     int index1 = random()%6 + 1;
@@ -74,6 +77,7 @@
     [_backgroundView addSubview:_image3];
     
     // Do any additional setup after loading the view from its nib.
+
     _friendsVC = [[MGFriendsExpandViewController alloc] init];
     [self.view addSubview:_friendsVC.view];
 }
@@ -83,6 +87,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 - (IBAction)startPlay:(id)sender
 {
@@ -291,5 +296,4 @@
     NSString *str3 = [NSString stringWithFormat:@"dice_%d.png", result3];
     _action3.image = [UIImage imageNamed:str3];
 }
-
 @end

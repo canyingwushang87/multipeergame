@@ -9,6 +9,8 @@
 #import "MGViewController.h"
 #import "MGRoomViewController.h"
 #import "MGHappyShakeViewController.h"
+#import "MGPeersViewController.h"
+
 
 @interface MGViewController ()
 
@@ -57,8 +59,15 @@
 
 - (void)startPlay
 {
+
+    /*MGPeersViewController *roomVC = [[MGPeersViewController alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:roomVC animated:YES];*/
+    
+    /*MGHappyShakeViewController *roomVC = [[MGHappyShakeViewController alloc] initWithNibName:@"MGHappyShakeViewController" bundle:nil];
+    [self.navigationController pushViewController:roomVC animated:YES];*/
     MGHappyShakeViewController *roomVC = [[MGHappyShakeViewController alloc] initWithNibName:@"MGHappyShakeViewController" bundle:nil];
     [self.navigationController pushViewController:roomVC animated:YES];
+
 }
 
 @end
