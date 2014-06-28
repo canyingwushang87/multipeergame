@@ -31,9 +31,8 @@
 {
     self = [super init];
     if (self) {
-        self.connectedPeerIDs = [NSMutableArray new];
-        
         _myPeerID = [[MCPeerID alloc] initWithDisplayName:playerName];
+        self.connectedPeerIDs = [NSMutableArray arrayWithObject:_myPeerID];
         _session = [[MCSession alloc] initWithPeer:_myPeerID];
         _session.delegate = self;
         self.serviceType = roomName;
@@ -50,23 +49,7 @@
 
 - (instancetype)initWithJoinRoom:(NSString *)roomName WithPlayerName:(NSString *)playerName
 {
-    self = [super init];
-    if (self) {
-        self.connectedPeerIDs = [NSMutableArray new];
-        
-        _myPeerID = [[MCPeerID alloc] initWithDisplayName:playerName];
-        _session = [[MCSession alloc] initWithPeer:_myPeerID];
-        _session.delegate = self;
-        self.serviceType = roomName;
-        self.advertiserAssistant = [[MCNearbyServiceAdvertiser alloc] initWithPeer:_myPeerID discoveryInfo:@{@"master":@"1"} serviceType:_serviceType];
-        _advertiserAssistant.delegate = self;
-        [self.advertiserAssistant startAdvertisingPeer];
-        
-        _nearbySBrowser = [[MCNearbyServiceBrowser alloc] initWithPeer:_myPeerID serviceType:self.serviceType];
-        _nearbySBrowser.delegate = self;
-        [_nearbySBrowser startBrowsingForPeers];
-    }
-    return self;
+    return [self initWithCreateRoom:roomName WithPlayerName:playerName];
 }
 
 - (void)dealloc
