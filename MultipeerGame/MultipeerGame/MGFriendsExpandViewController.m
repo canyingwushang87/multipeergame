@@ -8,6 +8,8 @@
 
 #import "MGFriendsExpandViewController.h"
 #import "MGFriendsExpandView.h"
+#import "MGCommonUtility.h"
+#import "MGAppDelegate.h"
 
 @interface MGFriendsExpandViewController ()<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
@@ -18,18 +20,19 @@
 @property (nonatomic, strong) UIView *bottomView;
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UITextField *inputTextField;
-@property (nonatomic, strong) Friend *currentFriend;
+@property (nonatomic, strong) MCPeerID *selectedPeerID;
 
-//@property (nonatomic, retain) UIView *messageView;
 @property (nonatomic, strong) UILabel *messageLabel;
 @property (nonatomic, assign) BOOL isMessageShow;
+@property (nonatomic, assign) BOOL isMessageShowCanceled;
 
 @property (nonatomic, strong) UIView *coverView;
 
 @property (nonatomic, assign) CGRect backButtonFrame;
 @property (nonatomic, assign) BOOL isAppear;
 
-@property (nonatomic, assign) BOOL isMessageShowCanceled;
+
+@property (nonatomic, strong) NSMutableArray *myPeersArray;
 
 @end
 
@@ -51,16 +54,14 @@
     self.view = [[MGFriendsExpandView alloc] init];
     self.view.frame = CGRectMake(0.0f, 0.0f, KFRIEND_APPLICATION_SIZE_WIDTH, KFRIEND_APPLICATION_SIZE_HEIGHT);
     self.view.backgroundColor = [UIColor clearColor];
-    _friends = [[NSMutableArray alloc] initWithCapacity:3];
-    for (int i = 0; i < 6; i ++)
-    {
-        Friend *f = [[Friend alloc] init];
-        f.name = [NSString stringWithFormat:@"test%d", i];
-        f.sex = 0;
-        
-        [_friends addObject:f];
-    }
     
+    _myPeersArray = [[NSMutableArray alloc] initWithCapacity:3];
+    MCPeerID *all = [[MCPeerID alloc] initWithDisplayName:@"all"];
+    [_myPeersArray addObject:all];
+    for (MCPeerID *peerId in _sessionHelper.connectedPeerIDs)
+    {
+        [_myPeersArray addObject:peerId];
+    }
 }
 
 - (void)viewDidLoad
@@ -83,7 +84,7 @@
     [self addBackButton];
     
     _maskView = [[UIView alloc] initWithFrame:CGRectMake(KFRIEND_APPLICATION_SIZE_WIDTH, KFRIEND_EXPAND_BACK_BUTTON_HEIGHT + 20, KFRIEND_EXPAND_LIST_WIDTH, KFRIEDN_EXPAND_LIST_HEIGHT)];
-    _maskView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+    _maskView.backgroundColor = [UIColor clearColor];//[UIColor colorWithWhite:0 alpha:0.5];
     [self.view addSubview:_maskView];
 
     _friendsTableView = [[UITableView alloc] initWithFrame:_maskView.bounds];
@@ -115,7 +116,11 @@
     _messageLabel.textColor = [UIColor whiteColor];
     _messageLabel.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8];
     _messageLabel.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:_messageLabel];
+    UITapGestureRecognizer *messageTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(messageHide)];
+    [_messageLabel addGestureRecognizer:messageTapRecognizer];
+    
+    MGAppDelegate *delegate = (MGAppDelegate *)[UIApplication sharedApplication].delegate;
+    [delegate.window addSubview:_messageLabel];
 }
 
 - (void)didReceiveMemoryWarning
@@ -199,7 +204,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_friends count];
+    return [_myPeersArray count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -210,19 +215,20 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellIdentifier"];
         cell.backgroundColor = [UIColor clearColor];
         
-        UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, KFRIEND_EXPAND_LIST_CELL_HEIGHT - 20, KFRIEND_EXPAND_LIST_WIDTH, 20)];
+        UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, KFRIEND_EXPAND_LIST_CELL_HEIGHT - 16, KFRIEND_EXPAND_LIST_WIDTH, 20)];
         nameLabel.tag = 10000;
         nameLabel.textAlignment = NSTextAlignmentCenter;
-        nameLabel.font = [UIFont systemFontOfSize:16];
+        nameLabel.font = [UIFont systemFontOfSize:15];
         [cell addSubview:nameLabel];
     }
     
     UILabel *nameLabel = (UILabel *)[cell viewWithTag:10000];
-    Friend *f = [_friends objectAtIndex:indexPath.row];
-    nameLabel.text = f.name;
+    MCPeerID *f = [_myPeersArray objectAtIndex:indexPath.row];
+    nameLabel.text = [NSString stringWithFormat:@"   %@", f.displayName];
     
-    UIImage *sourceImage = [UIImage imageNamed:@"dice_2"];
-    UIImage *image = [UIImage imageWithCGImage:sourceImage.CGImage scale:2 orientation:UIImageOrientationUp];
+//    UIImage *sourceImage = [UIImage imageNamed:@"dice_2"];
+    UIImage *sourceImage = [MGCommonUtility getImageByHashString:f.displayName];
+    UIImage *image = [UIImage imageWithCGImage:sourceImage.CGImage scale:5 orientation:UIImageOrientationUp];
     cell.imageView.image = image;
 
     return cell;
@@ -236,9 +242,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    _currentFriend = [_friends objectAtIndex:indexPath.row];
+    _selectedPeerID = [_myPeersArray objectAtIndex:indexPath.row];
     _bottomView.hidden = NO;
-    _nameLabel.text = [NSString stringWithFormat: @"To %@:", _currentFriend.name];
+    _nameLabel.text = [NSString stringWithFormat: @"To %@:", _selectedPeerID.displayName];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -275,7 +281,7 @@
         _messageLabel.frame = CGRectMake(0,  0, _messageLabel.frame.size.width, KFRIEND_MESSAGE_HEIGHT);
     } completion:^(BOOL finished) {
         _isMessageShowCanceled = NO;
-        [self performSelector:@selector(messageHide) withObject:nil afterDelay:3.0];
+        [self performSelector:@selector(messageHide) withObject:nil afterDelay:2.0];
     }];
 }
 
@@ -292,37 +298,40 @@
 
 - (void)showMessage:(NSString *)name message:(NSString *)message
 {
-    _messageLabel.text = [NSString stringWithFormat:@"%@: %@", name, message];
+    _messageLabel.text = [NSString stringWithFormat:@"To %@: %@", name, message];
     [self messageShow];
-    
-//    [self hideBottomView];
-//    _inputTextField.text = @"";
+ 
 }
 
 -(void)sendMessage
 {
-//    _messageLabel.text = [NSString stringWithFormat:@"%@:%@", _nameLabel.text, _inputTextField.text];//_inputTextField.text;
-//    [self messageShow];
+ 
+//    [self showMessage:_selectedPeerID.displayName message:_inputTextField.text];
     
     NSMutableDictionary *contentDict = [[NSMutableDictionary alloc] init];
-    [contentDict setValue:_nameLabel.text forKey:@"name"];
+    [contentDict setValue:_selectedPeerID.displayName forKey:@"name"];
     [contentDict setValue:_inputTextField.text forKey:@"content"];
     
     NSMutableDictionary *messageDict = [[NSMutableDictionary alloc] init];
     [messageDict setValue:contentDict forKey:@"message"];
     
-    NSData *scoreData = [NSJSONSerialization dataWithJSONObject:messageDict options:0 error:nil];
-   
-    [_sessionHelper sendDataToAll:scoreData];
+    NSData *messageData = [NSJSONSerialization dataWithJSONObject:messageDict options:0 error:nil];
+    if ([_selectedPeerID.displayName isEqualToString:@"all"])
+    {
+        [_sessionHelper sendDataToAll:messageData];
+    }
+    else
+    {
+        [_sessionHelper sendData:messageData toPeerID:_selectedPeerID];
+    }
     
     [self hideBottomView];
     _inputTextField.text = @"";
 }
 
-@end
-
-
-@implementation Friend
-
+- (void)showFriendsList
+{
+    [self backAction:nil];
+}
 
 @end

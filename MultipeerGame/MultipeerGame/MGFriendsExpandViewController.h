@@ -12,8 +12,8 @@
 #define KFRIEND_APPLICATION_SIZE_WIDTH [[UIScreen mainScreen] bounds].size.width
 #define KFRIEND_APPLICATION_SIZE_HEIGHT [[UIScreen mainScreen] bounds].size.height
 
-#define KFRIEND_EXPAND_LIST_WIDTH 80
-#define KFRIEND_EXPAND_LIST_CELL_HEIGHT 80
+#define KFRIEND_EXPAND_LIST_WIDTH 60
+#define KFRIEND_EXPAND_LIST_CELL_HEIGHT 70
 
 #define KFRIEND_EXPAND_BACK_BUTTON_HEIGHT 40
 
@@ -32,9 +32,9 @@
 
 @interface MGFriendsExpandViewController : UIViewController
 
-@property (nonatomic, retain) NSMutableArray *friends;
 @property (nonatomic, strong) SessionHelper *sessionHelper;
 
 - (void)showMessage:(NSString *)name message:(NSString *)message;
+- (void)showFriendsList;
 
 @end
