@@ -8,6 +8,7 @@
 
 #import "MGRoomViewController.h"
 #import "SessionHelper.h"
+#import "MGPeersViewController.h"
 
 @interface MGRoomViewController ()
 
@@ -102,6 +103,8 @@
     }
     
     self.sessionHelper = [[SessionHelper alloc] initWithJoinRoom:_joinNameText.text WithPlayerName:_name];
+    MGPeersViewController *peersVC = [[MGPeersViewController alloc] initWithSession:_sessionHelper];
+    [self.navigationController pushViewController:peersVC animated:YES];
 //    MCBrowserViewController *viewController = [[MCBrowserViewController alloc] initWithServiceType:self.sessionHelper.serviceType
 //                                                                                           session:self.sessionHelper.session];
 //    viewController.delegate = self;

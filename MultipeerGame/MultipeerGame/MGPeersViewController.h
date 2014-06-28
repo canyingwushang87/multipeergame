@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SessionHelper.h"
+@import MultipeerConnectivity;
 
 // 用户头像
 @interface MGUserCharactor : NSObject
@@ -15,6 +17,9 @@
 @property (nonatomic, assign) CGPoint iconMovetoPosition;
 @end
 
-@interface MGPeersViewController : UIViewController
+@interface MGPeersViewController : UIViewController<SessionHelperDelegate>
+
+- (id)initWithSession:(SessionHelper *)sessionHelper;
+
 @end
 
