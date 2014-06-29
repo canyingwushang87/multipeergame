@@ -11,6 +11,7 @@
 		4C14DC7B195EB6A10012C0AD /* MGFriendsExpandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C14DC79195EB6A10012C0AD /* MGFriendsExpandViewController.m */; };
 		4C14DC7D195EE1440012C0AD /* friends.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C14DC7C195EE1440012C0AD /* friends.png */; };
 		4C14DC7F195EE5DC0012C0AD /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C14DC7E195EE5DC0012C0AD /* home.png */; };
+		4C14DC84195F9D330012C0AD /* PhotoButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C14DC83195F9D330012C0AD /* PhotoButton@2x.png */; };
 		84695FD5195E695B00C762B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84695FD4195E695B00C762B9 /* Foundation.framework */; };
 		84695FD7195E695B00C762B9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84695FD6195E695B00C762B9 /* CoreGraphics.framework */; };
 		84695FD9195E695B00C762B9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84695FD8195E695B00C762B9 /* UIKit.framework */; };
@@ -56,6 +57,7 @@
 		4C14DC79195EB6A10012C0AD /* MGFriendsExpandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGFriendsExpandViewController.m; sourceTree = "<group>"; };
 		4C14DC7C195EE1440012C0AD /* friends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friends.png; sourceTree = "<group>"; };
 		4C14DC7E195EE5DC0012C0AD /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		4C14DC83195F9D330012C0AD /* PhotoButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PhotoButton@2x.png"; sourceTree = "<group>"; };
 		84695FD1195E695B00C762B9 /* MultipeerGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultipeerGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84695FD4195E695B00C762B9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		84695FD6195E695B00C762B9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -203,6 +205,7 @@
 		D47D9158195EA82800401724 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4C14DC83195F9D330012C0AD /* PhotoButton@2x.png */,
 				4C14DC7E195EE5DC0012C0AD /* home.png */,
 				4C14DC7C195EE1440012C0AD /* friends.png */,
 				D47D9182195EECC200401724 /* homebtn@2x.png */,
@@ -311,6 +314,7 @@
 				D47D9193195EECC200401724 /* icon8.png in Resources */,
 				D47D9179195EAB8B00401724 /* dice_5.png in Resources */,
 				84695FE8195E695B00C762B9 /* Main.storyboard in Resources */,
+				4C14DC84195F9D330012C0AD /* PhotoButton@2x.png in Resources */,
 				D47D918B195EECC200401724 /* homebtn@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

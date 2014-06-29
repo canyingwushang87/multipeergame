@@ -14,25 +14,21 @@
 @interface MGFriendsExpandViewController ()<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
 @property (nonatomic, strong) UITableView *friendsTableView;
-@property (nonatomic, strong) UIButton *backButton;
-@property (nonatomic, strong) UIView *maskView;
 
-@property (nonatomic, strong) UIView *bottomView;
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UITextField *inputTextField;
-@property (nonatomic, strong) MCPeerID *selectedPeerID;
+@property (nonatomic, strong) UIBarButtonItem *sendMessageButton;
+@property (nonatomic, strong) UIToolbar *bottomToolBar;
 
 @property (nonatomic, strong) UILabel *messageLabel;
 @property (nonatomic, assign) BOOL isMessageShow;
 @property (nonatomic, assign) BOOL isMessageShowCanceled;
 
 @property (nonatomic, strong) UIView *coverView;
-
-@property (nonatomic, assign) CGRect backButtonFrame;
 @property (nonatomic, assign) BOOL isAppear;
 
-
 @property (nonatomic, strong) NSMutableArray *myPeersArray;
+@property (nonatomic, strong) MCPeerID *selectedPeerID;
 
 @end
 
@@ -58,22 +54,11 @@
     _myPeersArray = [[NSMutableArray alloc] initWithCapacity:3];
     MCPeerID *all = [[MCPeerID alloc] initWithDisplayName:@"all"];
     [_myPeersArray addObject:all];
+    _selectedPeerID = all;
     for (MCPeerID *peerId in _sessionHelper.connectedPeerIDs)
     {
         [_myPeersArray addObject:peerId];
     }
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    _backButtonFrame = CGRectMake(KFRIEND_APPLICATION_SIZE_WIDTH - KFRIEND_EXPAND_LIST_WIDTH, 20, KFRIEND_EXPAND_LIST_WIDTH, KFRIEND_EXPAND_BACK_BUTTON_HEIGHT);
-    MGFriendsExpandView *contentView = (MGFriendsExpandView *)self.view;
-    contentView.isAppear = NO;
-    contentView.backButtonFrame = _backButtonFrame;
-
     
     _coverView = [[UIView alloc] initWithFrame:self.view.bounds];
     _coverView.backgroundColor = [UIColor clearColor];
@@ -81,36 +66,26 @@
     [_coverView addGestureRecognizer:tapRecognizer];
     [self.view addSubview:_coverView];
     
-    [self addBackButton];
-    
-    _maskView = [[UIView alloc] initWithFrame:CGRectMake(KFRIEND_APPLICATION_SIZE_WIDTH, KFRIEND_EXPAND_BACK_BUTTON_HEIGHT + 20, KFRIEND_EXPAND_LIST_WIDTH, KFRIEDN_EXPAND_LIST_HEIGHT)];
-    _maskView.backgroundColor = [UIColor clearColor];//[UIColor colorWithWhite:0 alpha:0.5];
-    [self.view addSubview:_maskView];
-
-    _friendsTableView = [[UITableView alloc] initWithFrame:_maskView.bounds];
+    _friendsTableView = [[UITableView alloc] initWithFrame:CGRectMake(KFRIEND_APPLICATION_SIZE_WIDTH, KFRIEND_EXPAND_BACK_BUTTON_HEIGHT + 20, KFRIEND_EXPAND_LIST_WIDTH, KFRIEDN_EXPAND_LIST_HEIGHT)];
     _friendsTableView.backgroundColor = [UIColor clearColor];
     _friendsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_friendsTableView setDelegate:self];
     [_friendsTableView setDataSource:self];
-    [_maskView addSubview:_friendsTableView];
+    [self.view addSubview:_friendsTableView];
     
-    _bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, KFRIEND_APPLICATION_SIZE_HEIGHT - KFRIEND_EXPAND_KEYBOARD_HEIGHT, KFRIEND_APPLICATION_SIZE_WIDTH, KFRIEND_EXPAND_KEYBOARD_HEIGHT)];
-    _bottomView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
-    _bottomView.hidden = YES;
-    [self.view addSubview:_bottomView];
-    
-    _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 75, KFRIEND_EXPAND_KEYBOARD_HEIGHT)];
+    _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(-10, 0, 40, KFRIEND_EXPAND_KEYBOARD_HEIGHT)];
     _nameLabel.backgroundColor = [UIColor clearColor];
-    _nameLabel.textColor = [UIColor whiteColor];
-    _nameLabel.font = [UIFont systemFontOfSize:16];
-    [_bottomView addSubview:_nameLabel];
+    _nameLabel.textColor = [UIColor blackColor];
+    _nameLabel.font = [UIFont systemFontOfSize:15];
+    _nameLabel.textAlignment = NSTextAlignmentLeft;
+    _nameLabel.text = @"to all:";
     
-    _inputTextField = [[UITextField alloc] initWithFrame:CGRectMake(80, 0, KFRIEND_APPLICATION_SIZE_WIDTH - 80, KFRIEND_EXPAND_KEYBOARD_HEIGHT)];
+    _inputTextField = [[UITextField alloc] initWithFrame:CGRectMake(20, 7, 210, KFRIEND_EXPAND_KEYBOARD_HEIGHT)];
     _inputTextField.borderStyle = UITextBorderStyleRoundedRect;
     _inputTextField.backgroundColor = [UIColor whiteColor];
     _inputTextField.delegate = self;
     _inputTextField.returnKeyType = UIReturnKeySend;
-    [_bottomView addSubview:_inputTextField];
+    _inputTextField.placeholder = @"to all:";
     
     _messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, -KFRIEND_MESSAGE_HEIGHT, KFRIEND_APPLICATION_SIZE_WIDTH, KFRIEND_MESSAGE_HEIGHT)];
     _messageLabel.textColor = [UIColor whiteColor];
@@ -121,6 +96,38 @@
     
     MGAppDelegate *delegate = (MGAppDelegate *)[UIApplication sharedApplication].delegate;
     [delegate.window addSubview:_messageLabel];
+    
+    _bottomToolBar = [[UIToolbar alloc]initWithFrame:CGRectMake(0,self.view.frame.size.height - 44, 320, 44)];
+    [self.view addSubview:_bottomToolBar];
+
+    _sendMessageButton = [[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStylePlain target:self action:@selector(sendMessage)];
+    UIBarButtonItem *inputItem = [[UIBarButtonItem alloc] initWithCustomView:_inputTextField];
+//    UIBarButtonItem *nameItem = [[UIBarButtonItem alloc] initWithCustomView:_nameLabel];
+    
+    UIButton *phtoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    phtoBtn.frame = CGRectMake(0, 0, 25, KFRIEND_EXPAND_KEYBOARD_HEIGHT);
+    [phtoBtn setImage:[UIImage imageNamed:@"PhotoButton.png"] forState:UIControlStateNormal];
+ 
+    UIBarButtonItem *photoItem = [[UIBarButtonItem alloc] initWithCustomView:phtoBtn];
+    [photoItem setTintColor:[UIColor lightGrayColor]];
+    [photoItem setStyle:UIBarButtonItemStyleBordered];
+    
+    NSMutableArray *items = [[NSMutableArray alloc] initWithObjects:photoItem, inputItem, _sendMessageButton, nil];
+    [_bottomToolBar setItems:items];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    MGFriendsExpandView *contentView = (MGFriendsExpandView *)self.view;
+    contentView.isAppear = NO;
+    contentView.toolbarFrame = _bottomToolBar.frame;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -138,33 +145,12 @@
     contentView.isAppear = NO;
 }
 
-- (void)addBackButton
-{
-    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton setImage:[UIImage imageNamed:@"friends.png"] forState:UIControlStateNormal];
-    backButton.frame = _backButtonFrame;
-    [self.view addSubview:backButton];
-    [backButton addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside];
-}
-
-- (void)backAction:(id)sender
-{
-    if (_maskView.frame.origin.x == 0)
-    {
-        [self hideFriendExpand];
-    }
-    else
-    {
-        [self showFriends];
-    }
-}
-
 - (void)showFriends
 {
     self.view.backgroundColor = [UIColor clearColor];
   
     [UIView animateWithDuration:0.3 animations:^(void) {
-        _maskView.frame = CGRectMake(KFRIEND_APPLICATION_SIZE_WIDTH - KFRIEND_EXPAND_LIST_WIDTH,  _maskView.frame.origin.y, KFRIEND_EXPAND_LIST_WIDTH, _maskView.bounds.size.height);
+        _friendsTableView.frame = CGRectMake(KFRIEND_APPLICATION_SIZE_WIDTH - KFRIEND_EXPAND_LIST_WIDTH,  _friendsTableView.frame.origin.y, KFRIEND_EXPAND_LIST_WIDTH, _friendsTableView.bounds.size.height);
     } completion:^(BOOL finished) {
         ;
     }];
@@ -181,7 +167,7 @@
     self.view.backgroundColor = [UIColor clearColor];
     [UIView animateWithDuration:0.3 animations:^(void)
      {
-         _maskView.frame = CGRectMake(KFRIEND_APPLICATION_SIZE_WIDTH, _maskView.frame.origin.y, KFRIEND_EXPAND_LIST_WIDTH, _maskView.bounds.size.height);
+         _friendsTableView.frame = CGRectMake(KFRIEND_APPLICATION_SIZE_WIDTH, _friendsTableView.frame.origin.y, KFRIEND_EXPAND_LIST_WIDTH, _friendsTableView.bounds.size.height);
      } completion:^(BOOL finished)
      {
          ;
@@ -190,8 +176,6 @@
 
 - (void)hideBottomView
 {
-    _bottomView.frame = CGRectMake(0, KFRIEND_APPLICATION_SIZE_HEIGHT - KFRIEND_EXPAND_KEYBOARD_HEIGHT, KFRIEND_APPLICATION_SIZE_WIDTH - 20, KFRIEND_EXPAND_KEYBOARD_HEIGHT);
-    _bottomView.hidden = YES;
     [_inputTextField resignFirstResponder];
 };
 
@@ -214,6 +198,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellIdentifier"];
         cell.backgroundColor = [UIColor clearColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, KFRIEND_EXPAND_LIST_CELL_HEIGHT - 16, KFRIEND_EXPAND_LIST_WIDTH, 20)];
         nameLabel.tag = 10000;
@@ -224,9 +209,17 @@
     
     UILabel *nameLabel = (UILabel *)[cell viewWithTag:10000];
     MCPeerID *f = [_myPeersArray objectAtIndex:indexPath.row];
-    nameLabel.text = [NSString stringWithFormat:@"   %@", f.displayName];
+    nameLabel.text = [NSString stringWithFormat:@" %@", f.displayName];
     
-//    UIImage *sourceImage = [UIImage imageNamed:@"dice_2"];
+    if ([f.displayName isEqualToString:_selectedPeerID.displayName])
+    {
+        nameLabel.textColor = KMG_BLUE_COLOR;
+    }
+    else
+    {
+        nameLabel.textColor = [UIColor blackColor];
+    }
+    
     UIImage *sourceImage = [MGCommonUtility getImageByHashString:f.displayName];
     UIImage *image = [UIImage imageWithCGImage:sourceImage.CGImage scale:5 orientation:UIImageOrientationUp];
     cell.imageView.image = image;
@@ -243,11 +236,21 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     _selectedPeerID = [_myPeersArray objectAtIndex:indexPath.row];
-    _bottomView.hidden = NO;
-    _nameLabel.text = [NSString stringWithFormat: @"To %@:", _selectedPeerID.displayName];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    _nameLabel.text = [NSString stringWithFormat: @"to %@:", _selectedPeerID.displayName];
+
+    _inputTextField.text = @"";
+    _inputTextField.placeholder =  [NSString stringWithFormat: @"to %@:", _selectedPeerID.displayName];
+    [_inputTextField becomeFirstResponder];
+    [tableView reloadData];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    UILabel *nameLabel = (UILabel *)[cell viewWithTag:10000];
+    nameLabel.textColor = [UIColor blackColor];
+}
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -262,9 +265,22 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    _bottomView.frame = CGRectMake(0, KFRIEND_APPLICATION_SIZE_HEIGHT - 216 - KFRIEND_EXPAND_KEYBOARD_HEIGHT, KFRIEND_APPLICATION_SIZE_WIDTH - 20, KFRIEND_EXPAND_KEYBOARD_HEIGHT);
     [self hideFriends];
 }
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSUInteger length = _inputTextField.text.length - range.length + string.length;
+    if (length > 0) {
+        self.sendMessageButton.enabled = YES;
+    }
+    else {
+        self.sendMessageButton.enabled = NO;
+    }
+    return YES;
+}
+
+#pragma mark - message
 
 - (void)messageShow
 {
@@ -300,12 +316,10 @@
 {
     _messageLabel.text = [NSString stringWithFormat:@"To %@: %@", name, message];
     [self messageShow];
- 
 }
 
 -(void)sendMessage
 {
- 
 //    [self showMessage:_selectedPeerID.displayName message:_inputTextField.text];
     
     NSMutableDictionary *contentDict = [[NSMutableDictionary alloc] init];
@@ -331,7 +345,55 @@
 
 - (void)showFriendsList
 {
-    [self backAction:nil];
+    if (_friendsTableView.frame.origin.x != KFRIEND_APPLICATION_SIZE_WIDTH)
+    {
+        [self hideFriendExpand];
+    }
+    else
+    {
+        [self showFriends];
+    }
+}
+
+
+#pragma mark - Toolbar animation helpers
+
+// Helper method for moving the toolbar frame based on user action
+- (void)moveToolBarUp:(BOOL)up forKeyboardNotification:(NSNotification *)notification
+{
+    NSDictionary *userInfo = [notification userInfo];
+    
+    // Get animation info from userInfo
+    NSTimeInterval animationDuration;
+    UIViewAnimationCurve animationCurve;
+    CGRect keyboardFrame;
+    [[userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
+    [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
+    [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
+    
+    // Animate up or down
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    [UIView setAnimationCurve:animationCurve];
+    
+ 
+    [_bottomToolBar setFrame:CGRectMake(_bottomToolBar.frame.origin.x, _bottomToolBar.frame.origin.y + (keyboardFrame.size.height * (up ? -1 : 1)), _bottomToolBar.frame.size.width, _bottomToolBar.frame.size.height)];
+
+    MGFriendsExpandView *contentView = (MGFriendsExpandView *)self.view;
+    contentView.isAppear = YES;
+    contentView.toolbarFrame = _bottomToolBar.frame;
+    
+    [UIView commitAnimations];
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification {
+    // move the toolbar frame up as keyboard animates into view
+    [self moveToolBarUp:YES forKeyboardNotification:notification];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification {
+    // move the toolbar frame down as keyboard animates into view
+    [self moveToolBarUp:NO forKeyboardNotification:notification];
 }
 
 @end

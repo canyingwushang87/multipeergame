@@ -61,12 +61,12 @@
 - (void)addNaviRightItem
 {
     UIButton *rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-//    rightBtn.backgroundColor = [UIColor blackColor];
     [rightBtn setTitle:@"好友" forState:UIControlStateNormal];
-    [rightBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [rightBtn setTitleColor:[UIColor colorWithRed:0 green:118/255.0 blue:1.0 alpha:1.0] forState:UIControlStateNormal];
 
     [rightBtn addTarget:self action:@selector(rightAction) forControlEvents:UIControlEventTouchUpInside];
     rightBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    
 //    UIBarButtonItem *tempItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home.png"] style:UIBarButtonItemStylePlain target:nil action:@selector(rightAction)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
 }

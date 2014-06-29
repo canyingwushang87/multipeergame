@@ -1,4 +1,4 @@
-//
+ //
 //  FriendsExpandView.m
 //  MCDemo
 //
@@ -21,10 +21,10 @@
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
 {
-    //判断收起状态下是否点在小按钮上
+    
     if (_isAppear == NO)
     {
-        BOOL tmp = CGRectContainsPoint(_backButtonFrame, point);
+        BOOL tmp = CGRectContainsPoint(_toolbarFrame, point);
         return tmp;
     }
     
