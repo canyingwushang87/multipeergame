@@ -80,6 +80,7 @@
     [super viewDidLoad];
     
     _backgroundView.frame = CGRectMake(_backgroundView.frame.origin.x, _backgroundView.frame.origin.y + 60, _backgroundView.frame.size.width, _backgroundView.frame.size.height);
+    [_backgroundView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"game_bg.png"]]];
     
     int index1 = random()%6 + 1;
     int index2 = random()%6 + 1;

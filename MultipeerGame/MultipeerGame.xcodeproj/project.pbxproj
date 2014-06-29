@@ -48,6 +48,7 @@
 		D47D9193195EECC200401724 /* icon8.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D918A195EECC200401724 /* icon8.png */; };
 		D47D9198195EECD000401724 /* MGCommonUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = D47D9195195EECD000401724 /* MGCommonUtility.m */; };
 		D47D9199195EECD000401724 /* MGPeersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D47D9197195EECD000401724 /* MGPeersViewController.m */; };
+		D47D919D195FAFAE00401724 /* game_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D47D919C195FAFAE00401724 /* game_bg@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +107,7 @@
 		D47D9195195EECD000401724 /* MGCommonUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGCommonUtility.m; sourceTree = "<group>"; };
 		D47D9196195EECD000401724 /* MGPeersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGPeersViewController.h; sourceTree = "<group>"; };
 		D47D9197195EECD000401724 /* MGPeersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGPeersViewController.m; sourceTree = "<group>"; };
+		D47D919C195FAFAE00401724 /* game_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "game_bg@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +207,7 @@
 		D47D9158195EA82800401724 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D47D919C195FAFAE00401724 /* game_bg@2x.png */,
 				4C14DC83195F9D330012C0AD /* PhotoButton@2x.png */,
 				4C14DC7E195EE5DC0012C0AD /* home.png */,
 				4C14DC7C195EE1440012C0AD /* friends.png */,
@@ -310,6 +313,7 @@
 				D47D9191195EECC200401724 /* icon6.png in Resources */,
 				D47D918F195EECC200401724 /* icon4.png in Resources */,
 				D47D9178195EAB8B00401724 /* dice_4.png in Resources */,
+				D47D919D195FAFAE00401724 /* game_bg@2x.png in Resources */,
 				D47D9175195EAB8B00401724 /* dice_1.png in Resources */,
 				D47D9193195EECC200401724 /* icon8.png in Resources */,
 				D47D9179195EAB8B00401724 /* dice_5.png in Resources */,
