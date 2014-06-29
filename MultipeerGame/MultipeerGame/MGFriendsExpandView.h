@@ -11,6 +11,6 @@
 @interface MGFriendsExpandView : UIView
 
 @property (nonatomic, assign) BOOL isAppear;
-@property (nonatomic, assign) CGRect backButtonFrame;
+@property (nonatomic, assign) CGRect toolbarFrame;
 
 @end
