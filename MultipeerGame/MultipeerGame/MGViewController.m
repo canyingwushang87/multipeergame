@@ -24,25 +24,25 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.title = @"微趴";
+    self.title = @"登录";
     self.view.backgroundColor = [UIColor whiteColor];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 120.0f, 320.0f, 50.0f)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 100.0f, 320.0f, 50.0f)];
     label.textAlignment = NSTextAlignmentCenter;
-    label.text = @"移动互联";
+    label.text = @"微趴";
     label.font = [UIFont boldSystemFontOfSize:40.0f];
     [self.view addSubview:label];
     
-    UILabel *tip = [[UILabel alloc] initWithFrame:CGRectMake(50.0f, 200.0f, 220.0f, 20.0f)];
-    tip.text = @"请输入用户ID";
+    UILabel *tip = [[UILabel alloc] initWithFrame:CGRectMake(50.0f, 180.0f, 220.0f, 20.0f)];
+    tip.text = @"请输入昵称";
     tip.font = [UIFont boldSystemFontOfSize:16.0f];
     [self.view addSubview:tip];
     
-    self.nameText = [[UITextField alloc] initWithFrame:CGRectMake(50.0f, 220.0f, 220.0f, 30.0f)];
+    self.nameText = [[UITextField alloc] initWithFrame:CGRectMake(50.0f, 210.0f, 220.0f, 50.0f)];
     [self.view addSubview:_nameText];
     _nameText.borderStyle = UITextBorderStyleRoundedRect;
     _nameText.delegate = self;
     
-    UIButton *start = [[UIButton alloc] initWithFrame:CGRectOffset(_nameText.frame, 0.0f, 50.0f)];
+    UIButton *start = [[UIButton alloc] initWithFrame:CGRectMake(50.0f, 280.0f, 220.0f, 50.0f)];
     [self.view addSubview:start];
     [start setBackgroundImage:[[UIImage imageNamed:@"homebtn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 10, 10)] forState:UIControlStateNormal];
     start.titleLabel.textColor = [UIColor whiteColor];

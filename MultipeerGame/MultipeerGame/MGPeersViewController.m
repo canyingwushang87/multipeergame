@@ -54,7 +54,7 @@
 //    [self addNewUser:@"555"];
 //    [self addNewUser:@"555"];
     
-    UIButton *startButton = [[UIButton alloc] initWithFrame:CGRectMake(50.0f, 500.0f, 220.0f, 30.0f)];
+    UIButton *startButton = [[UIButton alloc] initWithFrame:CGRectMake(50.0f, 450.0f, 220.0f, 50.0f)];
     [startButton setTitle:@"Start" forState:UIControlStateNormal];
     [startButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [startButton setBackgroundImage:[[UIImage imageNamed:@"homebtn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 10, 10)] forState:UIControlStateNormal];

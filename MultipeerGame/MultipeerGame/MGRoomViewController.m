@@ -59,12 +59,12 @@
     
     self.navigationItem.leftItemsSupplementBackButton = YES;
     
-    self.joinNameText = [[UITextField alloc] initWithFrame:CGRectMake(50.0f, 200.0f, 220.0f, 30.0f)];
+    self.joinNameText = [[UITextField alloc] initWithFrame:CGRectMake(50.0f, 200.0f, 220.0f, 50.0f)];
     [self.view addSubview:_joinNameText];
     _joinNameText.borderStyle = UITextBorderStyleRoundedRect;
     _joinNameText.delegate = self;
     
-    UIButton *join = [[UIButton alloc] initWithFrame:CGRectOffset(_joinNameText.frame, 0.0f, 50.0f)];
+    UIButton *join = [[UIButton alloc] initWithFrame:CGRectMake(50.0f, 270.0f, 220.0f, 50.0f)];
     [join setBackgroundImage:[[UIImage imageNamed:@"homebtn.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 10, 10)] forState:UIControlStateNormal];
     [self.view addSubview:join];
     [join setTitle:@"Join" forState:UIControlStateNormal];
